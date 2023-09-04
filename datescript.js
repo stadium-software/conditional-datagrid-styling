@@ -27,11 +27,11 @@ function attachClass(td, tr, classname) {
     }
 }
 function pass(celltext, conds) { 
-    celltext = parseFloat(celltext);
+    //celltext = new Date(celltext);
     let conditionsString = "";
     let and = "";
     for (let i = 0; i < conds.length; i++) {
-        conditionsString += and + celltext + conds[i];
+        conditionsString += and + "'" + celltext + "'" + conds[i];
         and = " && ";
     }
     let fn = new Function("return " + conditionsString);
