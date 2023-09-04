@@ -1,2 +1,4 @@
-# conditional-datagrid-styling
-A sample that shows how to style datagrids by cell content
+# Conditional Datagrid Styling
+A sample that allows for styling datagrid rows or cells by cell content
+
+## Description
