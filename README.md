@@ -325,6 +325,10 @@ observer.observe(el, options);
 
 
 
+
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/e5f195de-572d-46d3-a8e6-ccc6f8393d23
+
+
 3. Drag the DateColumnsStyler script under the List
 4. Provide the input parameters as per the table below
 
@@ -347,6 +351,10 @@ observer.observe(el, options);
    4. Check out the [supported Javascript comparison operators](#Supported-Operators)
 
 
+
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/6203032b-580f-4157-9045-c95f0c43dca9
+
+
 3. Drag the NumberColumnsStyler script under the List
 4. Provide the input parameters as per the table below
 
@@ -356,6 +364,10 @@ observer.observe(el, options);
 | Column Heading | The heading of the column where the filter will be applied (copy the table heading) |
 | Conditions | The above mentioned list of conditions |
 | AttachToRow | A boolean to indicate if the row or cell will be styled |
+
+
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/6e6b94ed-da47-4d32-9353-e5fc15ac168b
+
 
 ### Supported Operators
 
