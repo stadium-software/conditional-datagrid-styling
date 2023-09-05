@@ -2,6 +2,10 @@
 A sample that allows for styling datagrid rows or cells by cell content
 
 
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/5fc39d42-332c-4f52-afb4-efee9e5aef54
+
+
+
 
 <hr>
 
