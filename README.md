@@ -12,14 +12,14 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 ## Components
 
-1. [Database](#Database)
+{1. [Database](#Database)
 2. [Datagrid](#Datagrid)
-3. [Conditions Type](#Conditions Type)
-4. CSS Styles](#Database)
-5. Global Scripts](#Database)
-   1. Number Column Script](#Database)
-   2. Text Column Script](#Database)
-   3. Date Column Script](#Database)
+3. [Conditions Type](#Conditions-Type)
+4. [CSS Styles](#CSS-Styles)
+5. [Global Scripts](#Global-Scripts)
+   1. [Number Column Script](#Number-Column-Script)
+   2. [Text Column Script](#Text-Column-Script)
+   3. [Date Column Script](#Date-Column-Script)
 
 <hr>
 
@@ -59,7 +59,7 @@ Paste the CSS below into the application *Stylesheet*
 
 ```
 /*row selector*/
-.mygrid.data-grid-container .table-striped > tbody { 
+.watched.data-grid-container .table-striped > tbody { 
 	.orange-bg {
 		background-color: rgba(152, 237, 107, .5);
 		color: black;
@@ -95,7 +95,7 @@ Paste the CSS below into the application *Stylesheet*
 }
 ```
 
-### Global Scripts
+## Global Scripts
 Add three global scripts to your application as per the table below for three data types
 
 | Script name | 
@@ -106,12 +106,12 @@ Add three global scripts to your application as per the table below for three da
 
 <hr>
 
-## DateColumnsStyler
+### DateColumnsStyler
 
 1. Define the input parameters below
-| Parameter Name |
-| -------- | 
-|AttachToRow (boolean) || ColumnHeading (might contain spaces) || Conditions (a List of type *Conditions*) || DGClassName (add this to the DG)|
+
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DG</td></tr></table>
+
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
 var columnHeading = ~.Parameters.Input.ColumnHeading;
@@ -178,9 +178,9 @@ observer.observe(el, options);
 #### NumberColumnsStyler
 
 1. Define the input parameters below
-| Parameter Name |
-| -------- | 
-|AttachToRow (boolean) || ColumnHeading (might contain spaces) || Conditions (a List of type *Conditions*) || DGClassName (add this to the DG)|
+
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DG</td></tr></table>
+
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
 var columnHeading = ~.Parameters.Input.ColumnHeading;
@@ -248,9 +248,9 @@ observer.observe(el, options);
 #### TextColumnsStyler
 
 1. Define the input parameters below
-| Parameter Name |
-| -------- | 
-| AttachToRow (boolean) || CellClassNames (a List of type *Any*) || ColumnHeading (might contain spaces) || DGClassName (add this to the DG) |
+
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td>A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>CellClassNames</td><td>a List of type *Any*</td></tr><tr><td>DGClassName</td><td>Add this to the DG</td></tr></table>
+
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
 var columnHeading = ~.Parameters.Input.ColumnHeading;
@@ -310,4 +310,61 @@ observer.observe(el, options);
 <hr>
 
 ## Page.Load Event Handlers
+
+### Date Column Styling
+
+1. Add a List of type *Conditions*
+2. Open the *Items Editor* on the *Value* property
+   1. Add the name of a CSS class (e.g. black-bg)
+   2. Open the *Items Editor* on the *conditions* property
+      1. Enter the first condition (e.g. ">='2020/01/01'" for greater than or equals to first of Jan 2020)
+      2. Enter a second condition (e.g. "<'2021/01/01'" for smaller than Jan first 2021)
+   3. All dates MUST be enclosed in single quotes
+   4. All conditions will be chained using *&&* operators (AND)
+   5. Check out the [supported Javascript comparison operators](#Supported-Operators)
+
+
+
+3. Drag the DateColumnsStyler script under the List
+4. Provide the input parameters as per the table below
+
+| Parameter | Value |
+|---------|-------------|
+| DGClassName | *watched* |
+| Column Heading | The heading of the column where the filter will be applied (copy the table heading) |
+| Conditions | The above mentioned list of conditions |
+| AttachToRow | A boolean to indicate if the row or cell will be styled |
+
+### Number Column Styling
+
+1. Add a List of type *Conditions*
+2. Open the *Items Editor* on the *Value* property
+   1. Add the name of a CSS class (e.g. black-bg)
+   2. Open the *Items Editor* on the *conditions* property
+      1. Enter the first condition (e.g. ">0" for greater than 0)
+      2. Enter a second condition (e.g. "<6" for smaller than 6)
+   3. All conditions will be chained using *&&* operators (AND)
+   4. Check out the [supported Javascript comparison operators](#Supported-Operators)
+
+
+3. Drag the NumberColumnsStyler script under the List
+4. Provide the input parameters as per the table below
+
+| Parameter | Value |
+|---------|-------------|
+| DGClassName | *watched* |
+| Column Heading | The heading of the column where the filter will be applied (copy the table heading) |
+| Conditions | The above mentioned list of conditions |
+| AttachToRow | A boolean to indicate if the row or cell will be styled |
+
+### Supported Operators
+
+| Operator | Description |
+|--------|----------|
+| == | equals |
+| != | not equal |
+| > | greater than |
+| < | less than |
+| >= | greater than or equal to |
+| <= | less than or equal to |
 
