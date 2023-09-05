@@ -99,7 +99,7 @@ Paste the CSS below into the application *Stylesheet*
 Add three global scripts to your application as per the table below for three data types
 
 | Script name | 
-| -------- |
+| -------- | 
 | [DateColumnsStyler](#DateColumnsStyler) | 
 | [NumberColumnsStyler](#NumberColumnsStyler) |
 | [TextColumnsStyler](#TextColumnsStyler) | 
@@ -110,7 +110,7 @@ Add three global scripts to your application as per the table below for three da
 
 1. Define the input parameters below
 | Parameter Name |
-| -------- |
+| -------- | 
 |AttachToRow (boolean) || ColumnHeading (might contain spaces) || Conditions (a List of type *Conditions*) || DGClassName (add this to the DG)|
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
@@ -179,7 +179,7 @@ observer.observe(el, options);
 
 1. Define the input parameters below
 | Parameter Name |
-| -------- |
+| -------- | 
 |AttachToRow (boolean) || ColumnHeading (might contain spaces) || Conditions (a List of type *Conditions*) || DGClassName (add this to the DG)|
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
@@ -249,7 +249,7 @@ observer.observe(el, options);
 
 1. Define the input parameters below
 | Parameter Name |
-| -------- |
+| -------- | 
 | AttachToRow (boolean) || CellClassNames (a List of type *Any*) || ColumnHeading (might contain spaces) || DGClassName (add this to the DG) |
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
