@@ -12,19 +12,14 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 ## Components
 
-1. Database
-2. Datagrid
-3. Conditions Type
-4. CSS Styles
-5. Global Scripts
-   1. Number Column Script
-   2. Text Column Script
-   3. Date Column Script
-
-<hr>
-
-## Setup instructions
-These instructions apply to Stadium 6 only.
+1. [Database](#Database)
+2. [Datagrid](#Datagrid)
+3. [Conditions Type](#Conditions Type)
+4. CSS Styles](#Database)
+5. Global Scripts](#Database)
+   1. Number Column Script](#Database)
+   2. Text Column Script](#Database)
+   3. Date Column Script](#Database)
 
 <hr>
 
@@ -106,14 +101,16 @@ Add three global scripts to your application as per the table below for three da
 | Script name | 
 | -------- |
 | [DateColumnsStyler](#DateColumnsStyler) | 
-| NumberColumnsStyler |
-| TextColumnsStyler | 
+| [NumberColumnsStyler](#NumberColumnsStyler) |
+| [TextColumnsStyler](#TextColumnsStyler) | 
 
 <hr>
 
 ## DateColumnsStyler
 
 1. Define the input parameters below
+| Parameter Name |
+| -------- |
 |AttachToRow (boolean) || ColumnHeading (might contain spaces) || Conditions (a List of type *Conditions*) || DGClassName (add this to the DG)|
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
@@ -181,6 +178,8 @@ observer.observe(el, options);
 #### NumberColumnsStyler
 
 1. Define the input parameters below
+| Parameter Name |
+| -------- |
 |AttachToRow (boolean) || ColumnHeading (might contain spaces) || Conditions (a List of type *Conditions*) || DGClassName (add this to the DG)|
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
@@ -249,6 +248,8 @@ observer.observe(el, options);
 #### TextColumnsStyler
 
 1. Define the input parameters below
+| Parameter Name |
+| -------- |
 | AttachToRow (boolean) || CellClassNames (a List of type *Any*) || ColumnHeading (might contain spaces) || DGClassName (add this to the DG) |
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
