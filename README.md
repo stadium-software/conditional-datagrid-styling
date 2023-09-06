@@ -12,22 +12,12 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 ## Components
 
-- [Conditional Datagrid Styling](#conditional-datagrid-styling)
-  - [Version](#version)
-  - [Components](#components)
-    - [Database](#database)
-    - [DataGrid](#datagrid)
-    - [Conditions Type](#conditions-type)
-    - [CSS Styles](#css-styles)
-  - [Global Scripts](#global-scripts)
-    - [DateColumnsStyler](#datecolumnsstyler)
-      - [NumberColumnsStyler](#numbercolumnsstyler)
-      - [TextColumnsStyler](#textcolumnsstyler)
-  - [Page.Load Event Handlers](#pageload-event-handlers)
-    - [Date Columns](#date-columns)
-    - [Number Columns](#number-columns)
-    - [Text Columns](#text-columns)
-    - [Supported Operators](#supported-operators)
+1. [Database](#database)
+2. [DataGrid](#datagrid)
+3. [Conditions Type](#conditions-type)
+4. [CSS Styles](#css-styles)
+5. [Global Scripts](#global-scripts)
+6. [Page.Load Event Handler](#pageload-event-handlers)
 
 <hr>
 
