@@ -12,14 +12,22 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 ## Components
 
-1. [Database](#Database)
-2. [Datagrid](#Datagrid)
-3. [Conditions Type](#Conditions-Type)
-4. [CSS Styles](#CSS-Styles)
-5. [Global Scripts](#Global-Scripts)
-   1. [Date Column Script](#DateColumnsStyler)
-   2. [Number Column Script](#NumberColumnsStyler)
-   3. [Text Column Script](#TextColumnsStyler)
+- [Conditional Datagrid Styling](#conditional-datagrid-styling)
+  - [Version](#version)
+  - [Components](#components)
+    - [Database](#database)
+    - [DataGrid](#datagrid)
+    - [Conditions Type](#conditions-type)
+    - [CSS Styles](#css-styles)
+  - [Global Scripts](#global-scripts)
+    - [DateColumnsStyler](#datecolumnsstyler)
+      - [NumberColumnsStyler](#numbercolumnsstyler)
+      - [TextColumnsStyler](#textcolumnsstyler)
+  - [Page.Load Event Handlers](#pageload-event-handlers)
+    - [Date Columns](#date-columns)
+    - [Number Columns](#number-columns)
+    - [Text Columns](#text-columns)
+    - [Supported Operators](#supported-operators)
 
 <hr>
 
@@ -319,9 +327,9 @@ observer.observe(el, options);
 
 ## Page.Load Event Handlers
 
-In order to apply styles to a DataGrid row or column, the corresponding script must be executed in the Page.Load event handler. 
+In order to apply styles to a DataGrid row or column, script that corresponds with the column data type must be executed in the Page.Load event handler
 
-### Date Column Styling
+### Date Columns
 
 1. Add a List of type *Conditions*
 2. Open the *Items Editor* on the *Value* property
@@ -347,7 +355,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 5. Drag in the query and SetValue to populate the DataGrid as per usual
 
-### Number Column Styling
+### Number Columns
 
 1. Add a List of type *Conditions*
 2. Open the *Items Editor* on the *Value* property
@@ -372,7 +380,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 5. Drag in the query and SetValue to populate the DataGrid as per usual
 
-### Text Column Styling
+### Text Columns
 
 Text columns are styled by adding CSS classes to the stylesheet that correspond with the values in the datagrid.
 
