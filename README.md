@@ -333,7 +333,7 @@ In order to apply styles to a DataGrid row or column, the corresponding script m
    4. All conditions will be chained using *&&* operators (AND)
    5. Check out the [supported Javascript comparison operators](#Supported-Operators)
 
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/e5f195de-572d-46d3-a8e6-ccc6f8393d23
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/d8f4d3c9-164d-4a49-a7f1-e8edf00be892
 
 3. Drag the DateColumnsStyler script under the List
 4. Provide the input parameters as per the table below
