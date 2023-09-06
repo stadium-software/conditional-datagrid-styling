@@ -12,7 +12,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 ## Components
 
-{1. [Database](#Database)
+1. [Database](#Database)
 2. [Datagrid](#Datagrid)
 3. [Conditions Type](#Conditions-Type)
 4. [CSS Styles](#CSS-Styles)
