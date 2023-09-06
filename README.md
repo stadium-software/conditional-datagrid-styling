@@ -21,10 +21,10 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 <hr>
 
-### Database
+## Database
 Create the MSSQL database by running the SQL script in the Database folder of this repo. 
 
-### DataGrid
+## DataGrid
 
 1. Add a Database connector to the Database you created in the step above 
 2. Add a query to select the data for the DataGrid
@@ -41,7 +41,7 @@ select * from MyData
 
 <hr>
 
-### Conditions Type
+## Conditions Type
 
 1. Add a new type by clicking the *Type* button in the top toolbar of the Stadium Designer
 2. Name the type "Conditions"
@@ -55,7 +55,7 @@ select * from MyData
 ![Conditions-Type](https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/d9274b0a-78db-4f01-9125-bfa86fd7f5f5)
 
 
-### CSS Styles
+## CSS Styles
 Paste the CSS below into the application *Stylesheet*
 
 ```
@@ -179,7 +179,7 @@ observer = new MutationObserver(styleRows);
 observer.observe(el, options);
 ```
 
-#### NumberColumnsStyler
+### NumberColumnsStyler
 
 1. Create a Global Script and call it NumberColumnsStyler
 2. Add the input parameters below to the script
@@ -250,7 +250,7 @@ observer = new MutationObserver(styleRows);
 observer.observe(el, options);
 ```
 
-#### TextColumnsStyler
+### TextColumnsStyler
 
 1. Create a Global Script and call it TextColumnsStyler
 2. Add the input parameters below to the script
@@ -403,7 +403,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 5. Drag in the query and SetValue to populate the DataGrid as per usual
 
-### Supported Operators
+## Supported Operators
 
 | Operator | Description |
 |--------|----------|
