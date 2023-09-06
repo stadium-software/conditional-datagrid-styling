@@ -17,9 +17,9 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 3. [Conditions Type](#Conditions-Type)
 4. [CSS Styles](#CSS-Styles)
 5. [Global Scripts](#Global-Scripts)
-   1. [Number Column Script](#Number-Column-Script)
-   2. [Text Column Script](#Text-Column-Script)
-   3. [Date Column Script](#Date-Column-Script)
+   1. [Date Column Script](#DateColumnsStyler)
+   2. [Number Column Script](#NumberColumnsStyler)
+   3. [Text Column Script](#TextColumnsStyler)
 
 <hr>
 
@@ -81,6 +81,7 @@ Paste the CSS below into the application *Stylesheet*
 	.yellow-bg {
 		background-color: rgba(247, 223, 99, .5);
 	}
+    
 	.subscribed {
 		background-color: rgba(0, 77, 54, .5);
 		color: white;
@@ -323,11 +324,7 @@ observer.observe(el, options);
    4. All conditions will be chained using *&&* operators (AND)
    5. Check out the [supported Javascript comparison operators](#Supported-Operators)
 
-
-
-
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/e5f195de-572d-46d3-a8e6-ccc6f8393d23
-
 
 3. Drag the DateColumnsStyler script under the List
 4. Provide the input parameters as per the table below
@@ -338,6 +335,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 | Column Heading | The heading of the column where the filter will be applied (copy the table heading) |
 | Conditions | The above mentioned list of conditions |
 | AttachToRow | A boolean to indicate if the row or cell will be styled |
+
+5. Drag in the query and SetValue to populate the DataGrid as per usual
 
 ### Number Column Styling
 
@@ -350,10 +349,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
    3. All conditions will be chained using *&&* operators (AND)
    4. Check out the [supported Javascript comparison operators](#Supported-Operators)
 
-
-
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/6203032b-580f-4157-9045-c95f0c43dca9
-
 
 3. Drag the NumberColumnsStyler script under the List
 4. Provide the input parameters as per the table below
@@ -365,9 +361,40 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 | Conditions | The above mentioned list of conditions |
 | AttachToRow | A boolean to indicate if the row or cell will be styled |
 
+5. Drag in the query and SetValue to populate the DataGrid as per usual
+
+### Text Column Styling
+
+Text columns are styled by adding CSS classes to the stylesheet that correspond with the values in the datagrid.
+
+Some examples:
+
+| Column Text | CSS Class | Stylesheet |
+|--------|-----------|------------|
+| Meat Products | meat_products | .meat_products { color: red; } |
+| Dairy Products | dairy_products |.dairy_products { color: yellow; } |
+| Seafood and Fish | seafood_and_fish | .seafood_and_fish { color: blue; } |
+
+1. Add a List of type *Any*
+2. Open the *Items Editor* on the *Value* property
+   1. Add the names of all CSS classes you have added to your stylesheet
+   2. All classes must have a corresponding value in the datagrid
+   3. All values MUST be lowercase
+   4. Spaces in the datagrid value must be replaced with underscores
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/6e6b94ed-da47-4d32-9353-e5fc15ac168b
 
+3. Drag the TewtColumnsStyler script under the List
+4. Provide the input parameters as per the table below
+
+| Parameter | Value |
+|---------|-------------|
+| DGClassName | *watched* |
+| Column Heading | The heading of the column where the filter will be applied (copy the table heading) |
+| CellClassNames | The above mentioned list of class names |
+| AttachToRow | A boolean to indicate if the row or cell will be styled |
+
+5. Drag in the query and SetValue to populate the DataGrid as per usual
 
 ### Supported Operators
 
