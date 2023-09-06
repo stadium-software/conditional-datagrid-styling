@@ -1,7 +1,11 @@
 # Conditional Datagrid Styling
 A sample that allows for styling datagrid rows or cells by cell content
 
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/5fc39d42-332c-4f52-afb4-efee9e5aef54
+
+
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/dcb891a6-60c9-4837-913b-ccc384dde8ef
+
+
 
 <hr>
 
@@ -332,7 +336,11 @@ In order to apply styles to a DataGrid row or column, script that corresponds wi
    4. All conditions will be chained using *&&* operators (AND)
    5. Check out the [supported Javascript comparison operators](#Supported-Operators)
 
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/d8f4d3c9-164d-4a49-a7f1-e8edf00be892
+
+
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/c53c6b7e-c9f6-40dd-9a0a-b6d97d56c3e4
+
+
 
 3. Drag the DateColumnsStyler script under the List
 4. Provide the input parameters as per the table below
@@ -357,7 +365,11 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
    3. All conditions will be chained using *&&* operators (AND)
    4. Check out the [supported Javascript comparison operators](#Supported-Operators)
 
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/6203032b-580f-4157-9045-c95f0c43dca9
+
+
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/cf85c290-e3a0-4b83-b6d7-1da25796d443
+
+
 
 3. Drag the NumberColumnsStyler script under the List
 4. Provide the input parameters as per the table below
@@ -390,7 +402,11 @@ Some examples:
    3. All values MUST be lowercase
    4. Spaces in the datagrid value must be replaced with underscores
 
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/6e6b94ed-da47-4d32-9353-e5fc15ac168b
+
+
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/bd8e057f-40f6-429d-9577-603438c63d3a
+
+
 
 3. Drag the TewtColumnsStyler script under the List
 4. Provide the input parameters as per the table below
