@@ -54,6 +54,9 @@ select * from MyData
 | class | Any |
 | conditions | List |
 
+![Conditions-type](https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/718c7be0-c55a-40af-b769-2a06c2a72395)
+
+
 ### CSS Styles
 Paste the CSS below into the application *Stylesheet*
 
