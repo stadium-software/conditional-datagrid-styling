@@ -100,7 +100,8 @@ Paste the CSS below into the application *Stylesheet*
 ```
 
 ## Global Scripts
-Add three global scripts to your application as per the table below for three data types
+
+The sample caters for three data types
 
 | Script name | 
 | -------- | 
@@ -112,7 +113,8 @@ Add three global scripts to your application as per the table below for three da
 
 ### DateColumnsStyler
 
-1. Define the input parameters below
+1. Create a Global Script and call it DateColumnsStyler
+2. Add the input parameters below to the script
 
 <table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DG</td></tr></table>
 
@@ -181,7 +183,8 @@ observer.observe(el, options);
 
 #### NumberColumnsStyler
 
-1. Define the input parameters below
+1. Create a Global Script and call it NumberColumnsStyler
+2. Add the input parameters below to the script
 
 <table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DG</td></tr></table>
 
@@ -251,7 +254,8 @@ observer.observe(el, options);
 
 #### TextColumnsStyler
 
-1. Define the input parameters below
+1. Create a Global Script and call it TextColumnsStyler
+2. Add the input parameters below to the script
 
 <table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td>A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>CellClassNames</td><td>a List of type *Any*</td></tr><tr><td>DGClassName</td><td>Add this to the DG</td></tr></table>
 
@@ -315,6 +319,8 @@ observer.observe(el, options);
 
 ## Page.Load Event Handlers
 
+In order to apply styles to a DataGrid row or column, the corresponding script must be executed in the Page.Load event handler. 
+
 ### Date Column Styling
 
 1. Add a List of type *Conditions*
@@ -335,7 +341,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 | Parameter | Value |
 |---------|-------------|
 | DGClassName | *watched* |
-| Column Heading | The heading of the column where the filter will be applied (copy the table heading) |
+| Column Heading | Copy the heading from the DataGrid |
 | Conditions | The above mentioned list of conditions |
 | AttachToRow | A boolean to indicate if the row or cell will be styled |
 
@@ -360,7 +366,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 | Parameter | Value |
 |---------|-------------|
 | DGClassName | *watched* |
-| Column Heading | The heading of the column where the filter will be applied (copy the table heading) |
+| Column Heading | Copy the heading from the DataGrid |
 | Conditions | The above mentioned list of conditions |
 | AttachToRow | A boolean to indicate if the row or cell will be styled |
 
@@ -393,7 +399,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 | Parameter | Value |
 |---------|-------------|
 | DGClassName | *watched* |
-| Column Heading | The heading of the column where the filter will be applied (copy the table heading) |
+| Column Heading | Copy the heading from the DataGrid |
 | CellClassNames | The above mentioned list of class names |
 | AttachToRow | A boolean to indicate if the row or cell will be styled |
 
