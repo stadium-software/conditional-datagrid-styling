@@ -10,18 +10,22 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 <hr>
 
 ## Version
-1.0
+1.1
+
+Added a section on how to disable a link using this module
 
 <hr>
 
-## Components
+## Contents
 
-1. [Database](#database)
+1. \\[Database](#database)
 2. [DataGrid](#datagrid)
 3. [Conditions Type](#conditions-type)
 4. [CSS Styles](#css-styles)
 5. [Global Scripts](#global-scripts)
 6. [Page.Load Event Handler](#pageload-event-handlers)
+7. [Supported Operators](#supported-operators)
+8. [Disabling links](#disabling-links)
 
 <hr>
 
@@ -431,3 +435,35 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 | >= | greater than or equal to |
 | <= | less than or equal to |
 
+## Disabling links
+If you want to use a condition to decide whether the user should see a link to another page or not, do this
+
+1. Create your conditions as above
+2. Attach the class to the row (AttachToRow = true)
+3. Use any of CSS below to manipulate the link column 
+
+The examples assume the class you attach is called *link-col* and the link is in the first column of your DataGrid.
+
+```
+.link-col td:nth-child(1) button {
+    /*Disable the click event*/
+    pointer-events: none;
+
+    /*Make it gray*/
+    color: grey;
+
+    /*Remove the underline*/
+    text-decoration: none;
+}
+```
+
+```
+.link-col td:nth-child(1) button {
+    /*Hide the link away*/
+    display: none;
+}
+.link-col td:nth-child(1) div:after {
+    /*Add a pseudo class to the cell and write any text you like (try "\26D4" https://www.w3schools.com/cssref/css_entities.php)*/
+    content: "Disabled";
+}
+```
