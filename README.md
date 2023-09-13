@@ -326,7 +326,7 @@ observer.observe(el, options);
 
 ## Page.Load Event Handlers
 
-In order to apply styles to a DataGrid row or column, script that corresponds with the column data type must be executed in the Page.Load event handler
+In order to apply styles to a DataGrid row or column, script that corresponds with the column data type must be executed in the Page.Load event handler of the page where you added the DataGrid above
 
 ### Date Columns
 
@@ -349,14 +349,16 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 3. Drag the DateColumnsStyler script under the List
 4. Provide the input parameters as per the table below
 
-| Parameter | Value |
-|---------|-------------|
-| DGClassName | *watched* |
-| Column Heading | Copy the heading from the DataGrid |
-| Conditions | The above mentioned list of conditions |
-| AttachToRow | A boolean to indicate if the row or cell will be styled |
+| Parameter | Value | Note |
+|---------|-------------|-------------------|
+| DGClassName | *watched* | This must be the class name you assigned to the DataGrid |
+| Column Heading | Copy the heading from the DataGrid | Column headings might contain spaces that your database column does not contain |
+| Conditions | The above mentioned list of conditions | |
+| AttachToRow | =true or =false | A boolean to indicate if the row or cell will be styled |
 
-5. Drag in the query and SetValue to populate the DataGrid as per usual
+![](images/DateScriptParameters.png)
+
+5. Drag in the query and a SetValue to populate the DataGrid as per usual
 
 ### Number Columns
 
@@ -378,12 +380,14 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 3. Drag the NumberColumnsStyler script under the List
 4. Provide the input parameters as per the table below
 
-| Parameter | Value |
-|---------|-------------|
-| DGClassName | *watched* |
-| Column Heading | Copy the heading from the DataGrid |
-| Conditions | The above mentioned list of conditions |
-| AttachToRow | A boolean to indicate if the row or cell will be styled |
+| Parameter | Value | Note |
+|---------|-------------|-------------------|
+| DGClassName | *watched* | This must be the class name you assigned to the DataGrid |
+| Column Heading | Copy the heading from the DataGrid | Column headings might contain spaces that your database column does not contain |
+| Conditions | The above mentioned list of conditions | |
+| AttachToRow | =true or =false | A boolean to indicate if the row or cell will be styled |
+
+![](images/NumberScriptParameters.png)
 
 5. Drag in the query and SetValue to populate the DataGrid as per usual
 
@@ -406,21 +410,20 @@ Some examples:
    3. All values MUST be lowercase
    4. Spaces in the datagrid value must be replaced with underscores
 
-
-
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/bd8e057f-40f6-429d-9577-603438c63d3a
-
 
 
 3. Drag the TewtColumnsStyler script under the List
 4. Provide the input parameters as per the table below
 
-| Parameter | Value |
-|---------|-------------|
-| DGClassName | *watched* |
-| Column Heading | Copy the heading from the DataGrid |
-| CellClassNames | The above mentioned list of class names |
-| AttachToRow | A boolean to indicate if the row or cell will be styled |
+| Parameter | Value | Note |
+|---------|-------------|---------|
+| DGClassName | *watched* | This must be the class name you assigned to the DataGrid |
+| Column Heading | Copy the heading from the DataGrid | Column headings might contain spaces that your database column does not contain |
+| CellClassNames | The above mentioned list of class names | |
+| AttachToRow | =true or =false | A boolean to indicate if the row or cell will be styled |
+
+![](images/TextScriptParameters.png)
 
 5. Drag in the query and SetValue to populate the DataGrid as per usual
 
