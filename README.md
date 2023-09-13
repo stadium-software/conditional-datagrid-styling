@@ -125,7 +125,7 @@ The sample caters for three data types
 
 <table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DataGrid (DG)</td></tr></table>
 
-2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
+2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action. You will see an error in the Validations Panel that says "Invalid script was detected". You can safely ignore this error. 
 ```
 var columnHeading = ~.Parameters.Input.ColumnHeading;
 var tableClassName = "." + ~.Parameters.Input.DGClassName;
@@ -195,7 +195,7 @@ observer.observe(el, options);
 
 <table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DataGrid (DG)</td></tr></table>
 
-2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
+2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action. You will see an error in the Validations Panel that says "Invalid script was detected". You can safely ignore this error. 
 ```
 var columnHeading = ~.Parameters.Input.ColumnHeading;
 var tableClassName = "." + ~.Parameters.Input.DGClassName;
