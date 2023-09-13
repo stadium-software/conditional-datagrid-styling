@@ -340,10 +340,24 @@ In order to apply styles to a DataGrid row or column, script that corresponds wi
    4. All conditions will be chained using *&&* operators (AND)
    5. Check out the [supported Javascript comparison operators](#supported-operators)
 
+*Conditions Value Property Example*
+```
+= [{
+ "class": "yellow-bg",
+ "conditions": [">='2022/01/01'","<'2022/10/01'"]
+},{
+ "class": "black-bg",
+ "conditions": [">='2022/10/01'","<'2023/01/01'"]
+},{
+ "class": "green-bg",
+ "conditions": [">='2023/01/01'","<'2024/01/01'"]
+}]
+```
+
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/c53c6b7e-c9f6-40dd-9a0a-b6d97d56c3e4
 
-3. Drag the DateColumnsStyler script under the List
-4. Provide the input parameters as per the table below
+1. Drag the DateColumnsStyler script under the List
+2. Provide the input parameters as per the table below
 
 | Parameter | Value | Note |
 |---------|-------------|-------------------|
@@ -366,6 +380,26 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
       2. Enter a second condition (e.g. "<6" for smaller than 6)
    3. All conditions will be chained using *&&* operators (AND)
    4. Check out the [supported Javascript comparison operators](#Supported-Operators)
+
+*Conditions Value Property Example*
+```
+= [{
+	"class": "orange-bg",
+	"conditions": ["<2",">0"]
+},{
+	"class": "yellow-bg",
+	"conditions": ["==2"]
+},{
+	"class": "black-bg",
+	"conditions": [">2","<8"]
+},{
+	"class": "green-bg",
+	"conditions": ["> 7"]
+},{
+	"class": "link-col",
+	"conditions": ["==0"]
+}]
+```
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/cf85c290-e3a0-4b83-b6d7-1da25796d443
 
@@ -402,9 +436,14 @@ Some examples:
    3. All values MUST be lowercase
    4. Spaces in the datagrid value must be replaced with underscores
 
+*CellClassNames Value Property Example*
+```
+= ["no_data","subscribed","unsubscribed"]
+```
+
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/bd8e057f-40f6-429d-9577-603438c63d3a
 
-3. Drag the TewtColumnsStyler script under the List
+3. Drag the TextColumnsStyler script under the List
 4. Provide the input parameters as per the table below
 
 | Parameter | Value | Note |
