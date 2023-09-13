@@ -123,7 +123,7 @@ The sample caters for three data types
 1. Create a Global Script and call it DateColumnsStyler
 2. Add the input parameters below to the script
 
-<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DG</td></tr></table>
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DataGrid (DG)</td></tr></table>
 
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
@@ -193,7 +193,7 @@ observer.observe(el, options);
 1. Create a Global Script and call it NumberColumnsStyler
 2. Add the input parameters below to the script
 
-<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DG</td></tr></table>
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DataGrid (DG)</td></tr></table>
 
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
@@ -264,7 +264,7 @@ observer.observe(el, options);
 1. Create a Global Script and call it TextColumnsStyler
 2. Add the input parameters below to the script
 
-<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td>A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>CellClassNames</td><td>a List of type *Any*</td></tr><tr><td>DGClassName</td><td>Add this to the DG</td></tr></table>
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td>A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>CellClassNames</td><td>a List of type *Any*</td></tr><tr><td>DGClassName</td><td>Add this to the DataGrid (DG)</td></tr></table>
 
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
@@ -338,13 +338,9 @@ In order to apply styles to a DataGrid row or column, script that corresponds wi
       2. Enter a second condition (e.g. "<'2021/01/01'" for smaller than Jan first 2021)
    3. All dates MUST be enclosed in single quotes
    4. All conditions will be chained using *&&* operators (AND)
-   5. Check out the [supported Javascript comparison operators](#Supported-Operators)
-
-
+   5. Check out the [supported Javascript comparison operators](#supported-operators)
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/c53c6b7e-c9f6-40dd-9a0a-b6d97d56c3e4
-
-
 
 3. Drag the DateColumnsStyler script under the List
 4. Provide the input parameters as per the table below
@@ -352,7 +348,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 | Parameter | Value | Note |
 |---------|-------------|-------------------|
 | DGClassName | *watched* | This must be the class name you assigned to the DataGrid |
-| Column Heading | Copy the heading from the DataGrid | Column headings might contain spaces that your database column does not contain |
+| Column Heading | Copy the heading from the DataGrid or the 'Header Text' property of the DataGrid columnw | Column headings might contain spaces that your database column does not contain |
 | Conditions | The above mentioned list of conditions | |
 | AttachToRow | =true or =false | A boolean to indicate if the row or cell will be styled |
 
@@ -371,11 +367,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
    3. All conditions will be chained using *&&* operators (AND)
    4. Check out the [supported Javascript comparison operators](#Supported-Operators)
 
-
-
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/cf85c290-e3a0-4b83-b6d7-1da25796d443
-
-
 
 3. Drag the NumberColumnsStyler script under the List
 4. Provide the input parameters as per the table below
@@ -383,7 +375,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 | Parameter | Value | Note |
 |---------|-------------|-------------------|
 | DGClassName | *watched* | This must be the class name you assigned to the DataGrid |
-| Column Heading | Copy the heading from the DataGrid | Column headings might contain spaces that your database column does not contain |
+| Column Heading | Copy the heading from the DataGrid or the 'Header Text' property of the DataGrid column | Column headings might contain spaces that your database column does not contain |
 | Conditions | The above mentioned list of conditions | |
 | AttachToRow | =true or =false | A boolean to indicate if the row or cell will be styled |
 
@@ -412,14 +404,13 @@ Some examples:
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/bd8e057f-40f6-429d-9577-603438c63d3a
 
-
 3. Drag the TewtColumnsStyler script under the List
 4. Provide the input parameters as per the table below
 
 | Parameter | Value | Note |
 |---------|-------------|---------|
 | DGClassName | *watched* | This must be the class name you assigned to the DataGrid |
-| Column Heading | Copy the heading from the DataGrid | Column headings might contain spaces that your database column does not contain |
+| Column Heading | Copy the heading from the DataGrid or the 'Header Text' property of the DataGrid column | Column headings might contain spaces that your database column does not contain |
 | CellClassNames | The above mentioned list of class names | |
 | AttachToRow | =true or =false | A boolean to indicate if the row or cell will be styled |
 
