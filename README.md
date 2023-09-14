@@ -330,7 +330,7 @@ In order to apply styles to a DataGrid row or column, script that corresponds wi
 
 ### Date Columns
 
-1. Add a List of type *Conditions*
+1. Add a List of type *Conditions* as the FIRST item in the event handler (it MUST be the first item in the script!!!)
 2. Open the *Items Editor* on the *Value* property
    1. Add the name of a CSS class (e.g. black-bg)
    2. Open the *Items Editor* on the *conditions* property
@@ -356,7 +356,7 @@ In order to apply styles to a DataGrid row or column, script that corresponds wi
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/c53c6b7e-c9f6-40dd-9a0a-b6d97d56c3e4
 
-1. Drag the DateColumnsStyler script under the List
+1. Drag the DateColumnsStyler script directly under the List of Conditions
 2. Provide the input parameters as per the table below
 
 | Parameter | Value | Note |
@@ -372,7 +372,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 ### Number Columns
 
-1. Add a List of type *Conditions*
+1. Add a List of type *Conditions* as the FIRST item in the event handler (it MUST be the first item in the script!!!)
 2. Open the *Items Editor* on the *Value* property
    1. Add the name of a CSS class (e.g. black-bg)
    2. Open the *Items Editor* on the *conditions* property
@@ -403,7 +403,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/cf85c290-e3a0-4b83-b6d7-1da25796d443
 
-3. Drag the NumberColumnsStyler script under the List
+3. Drag the NumberColumnsStyler script directly under the List of Conditions
 4. Provide the input parameters as per the table below
 
 | Parameter | Value | Note |
@@ -429,7 +429,7 @@ Some examples:
 | Dairy Products | dairy_products |.dairy_products { color: yellow; } |
 | Seafood and Fish | seafood_and_fish | .seafood_and_fish { color: blue; } |
 
-1. Add a List of type *Any*
+1. Add a List of type *Any* as the FIRST item in the event handler (it MUST be the first item in the script!!!)
 2. Open the *Items Editor* on the *Value* property
    1. Add the names of all CSS classes you have added to your stylesheet
    2. All classes must have a corresponding value in the datagrid
@@ -443,7 +443,7 @@ Some examples:
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/bd8e057f-40f6-429d-9577-603438c63d3a
 
-3. Drag the TextColumnsStyler script under the List
+3. Drag the TextColumnsStyler script directly under the List 
 4. Provide the input parameters as per the table below
 
 | Parameter | Value | Note |
