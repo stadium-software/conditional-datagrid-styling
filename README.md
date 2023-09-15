@@ -14,18 +14,23 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 ## Contents
 
-1. \\[Database, Connector and DataGrid](#database-connector-and-datagrid)
-2. [Conditions Type](#conditions-type)
-3. [CSS Styles](#css-styles)
-4. [Global Scripts](#global-scripts)
-5. [Page.Load Event Handler](#pageload-event-handlers)
-6. [Supported Operators](#supported-operators)
-7. [Disabling links](#disabling-links)
+1. \\[Application Setup](#application-setup)
+2. [Database, Connector and DataGrid](#database-connector-and-datagrid)
+3. [Conditions Type](#conditions-type)
+4. [CSS Styles](#css-styles)
+5. [Global Scripts](#global-scripts)
+6. [Page.Load Event Handler](#pageload-event-handlers)
+7. [Supported Operators](#supported-operators)
+8. [Disabling links](#disabling-links)
 
 <hr>
 
-### Database, Connector and DataGrid
-Use the instructions from [this repo](https://github.com/stadium-software/samples-database) to setup the database and DataGrid for this sample
+## Application Setup
+1. Check the *Enable Style Sheet* checkbox in the application properties
+
+## Database, Connector and DataGrid
+
+Use the instructions from [this repo](https://github.com/stadium-software/samples-database) to setup the database and DataGrids for this sample
 
 <hr>
 
