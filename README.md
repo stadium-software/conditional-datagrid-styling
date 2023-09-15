@@ -25,7 +25,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 <hr>
 
 ### Database, Connector and DataGrid
-Use the instructions from [this repo](/stadium-software/samples-database) to setup the database and DataGrid for this sample
+Use the instructions from [this repo](https://github.com/stadium-software/samples-database) to setup the database and DataGrid for this sample
 
 <hr>
 
