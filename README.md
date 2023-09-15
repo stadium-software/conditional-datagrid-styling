@@ -5,11 +5,9 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 <hr>
 
-## Current Version
-1.2
-
 ## Change Log
 1.1 Added a section on how to disable a link using this module
+
 1.2 Enhanced script to include style attributes of attached classes in tr or tr tags directly
 
 <hr>
@@ -148,10 +146,8 @@ function styleRows() {
 function attachClass(td, tr, classname, styles) { 
     let ob = styles.find(o => o.name === classname);
     if (attachtorow) {
-        //tr.classList.add(classname);
         tr.setAttribute("style", ob.styles);
     } else { 
-        //td.parentElement.classList.add(classname);
         td.parentElement.setAttribute("style", ob.styles);
     }
 }
@@ -250,10 +246,8 @@ function attachClass(td, tr, classname, styles) {
     let ob = styles.find(o => o.name === classname);
     console.log(styles.find(o => o.name === classname));
     if (attachtorow) {
-        //tr.classList.add(classname);
         tr.setAttribute("style", ob.styles);
     } else { 
-        //td.parentElement.classList.add(classname);
         td.parentElement.setAttribute("style", ob.styles);
     }
 }
@@ -324,7 +318,7 @@ observer.observe(el, options);
 1. Create a Global Script and call it TextColumnsStyler
 2. Add the input parameters below to the script
 
-<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td>A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>CellClassNames</td><td>a List of type *Any*</td></tr><tr><td>DataGridClass</td><td>Add this to the DataGrid (DG)</td></tr></table>
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td>A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>CellClassNames</td><td>A List of type *Any*</td></tr><tr><td>DataGridClass</td><td>Add this to the DataGrid (DG)</td></tr></table>
 
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
@@ -357,10 +351,8 @@ function styleRows() {
 function attachClass(td, tr, classname, styles) { 
     let ob = styles.find(o => o.name === classname);
     if (attachtorow) {
-        //tr.classList.add(classname);
         tr.setAttribute("style", ob.styles);
     } else { 
-        //td.parentElement.classList.add(classname);
         td.parentElement.setAttribute("style", ob.styles);
     }
 }
@@ -453,7 +445,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 | Parameter | Value | Note |
 |---------|-------------|-------------------|
 | DataGridClass | *watched* | This must be the class name you assigned to the DataGrid |
-| Column Heading | Copy the heading from the DataGrid or the 'Header Text' property of the DataGrid columnw | Column headings might contain spaces that your database column does not contain |
+| Column Heading | Copy the heading from the DataGrid or the 'Header Text' property of the DataGrid column | Column headings might contain spaces that your database column does not contain |
 | Conditions | The above mentioned list of conditions | |
 | AttachToRow | =true or =false | A boolean to indicate if the row or cell will be styled |
 
