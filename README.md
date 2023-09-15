@@ -1,18 +1,16 @@
 # Conditional Datagrid Styling
 A sample that allows for styling datagrid rows or cells by cell content
 
-
-
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/dcb891a6-60c9-4837-913b-ccc384dde8ef
-
-
 
 <hr>
 
-## Version
-1.1
+## Current Version
+1.2
 
-Added a section on how to disable a link using this module
+## Change Log
+1.1 Added a section on how to disable a link using this module
+1.2 Enhanced script to include style attributes of attached classes in tr or tr tags directly
 
 <hr>
 
@@ -68,41 +66,38 @@ select * from MyData
 Paste the CSS below into the application *Stylesheet*
 
 ```
-/*row selector*/
-.watched.data-grid-container .table-striped > tbody { 
-	.orange-bg {
-		background-color: rgba(152, 237, 107, .5);
-		color: black;
-	}
-	.grey-bg {
-		background-color: rgba(209, 214, 86, .5);
-	}
-	.black-bg {
-		background-color: rgba(0, 77, 54, .5);
-		color: white;
-	}
-	.green-bg {
-		background-color: rgba(86, 214, 112, .5);
-		color: black;
-	}
-	.bold-font {
-		font-weight: bold;
-	}
-	.yellow-bg {
-		background-color: rgba(247, 223, 99, .5);
-	}
-    
-	.subscribed {
-		background-color: rgba(0, 77, 54, .5);
-		color: white;
-	}
-	.unsubscribed {
-		background-color: rgba(247, 42, 99, .5);
-		color: white;
-	}
-	.no_data {
-		background-color: rgba(214, 170, 86, .5);
-	}
+.subscribed {
+	background-color: rgba(0, 77, 54, .5);
+	color: white;
+}
+.unsubscribed {
+	background-color: rgba(247, 42, 99, .5);
+	color: white;
+}
+.no_data {
+	background-color: rgba(214, 170, 86, .5);
+}
+
+.orange-bg {
+	background-color: rgba(152, 237, 107, .5);
+	color: black;
+}
+.grey-bg {
+	background-color: rgba(209, 214, 86, .5);
+}
+.black-bg {
+	background-color: rgba(0, 77, 54, .5);
+	color: white;
+}
+.green-bg {
+	background-color: rgba(86, 214, 112, .5);
+	color: black;
+}
+.bold-font {
+	font-weight: bold;
+}
+.yellow-bg {
+	background-color: rgba(247, 223, 99, .5);
 }
 ```
 
@@ -123,18 +118,19 @@ The sample caters for three data types
 1. Create a Global Script and call it DateColumnsStyler
 2. Add the input parameters below to the script
 
-<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DataGrid (DG)</td></tr></table>
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DataGridClass</td><td>Add this to the DataGrid (DG)</td></tr></table>
 
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action. You will see an error in the Validations Panel that says "Invalid script was detected". You can safely ignore this error. 
 ```
 var columnHeading = ~.Parameters.Input.ColumnHeading;
-var tableClassName = "." + ~.Parameters.Input.DGClassName;
+var tableClassName = "." + ~.Parameters.Input.DataGridClass;
 var data = ~.Parameters.Input.Conditions;
 var attachtorow = ~.Parameters.Input.AttachToRow;
 
 function styleRows() {
     let columnNumber = getColumnNumber(columnHeading);
     let arrPageRows = document.querySelectorAll(tableClassName + " tbody tr");
+    let arrStyles = getAttributes();
     for (let i = 0; i < arrPageRows.length; i++) {
         let parentEl = arrPageRows[i];
         let cell = parentEl.querySelector("td:nth-child(" + columnNumber + ") div");
@@ -143,17 +139,20 @@ function styleRows() {
                 parentEl.classList.remove(data[i].class);
                 cell.parentElement.classList.remove(data[i].class);
                 if (pass(cell.innerText, data[i].conditions)) {
-                    attachClass(cell, parentEl, data[i].class);
+                    attachClass(cell, parentEl, data[i].class, arrStyles);
                 }
             }
         }
     }
 }
-function attachClass(td, tr, classname) { 
+function attachClass(td, tr, classname, styles) { 
+    let ob = styles.find(o => o.name === classname);
     if (attachtorow) {
-        tr.classList.add(classname);
+        //tr.classList.add(classname);
+        tr.setAttribute("style", ob.styles);
     } else { 
-        td.parentElement.classList.add(classname);
+        //td.parentElement.classList.add(classname);
+        td.parentElement.setAttribute("style", ob.styles);
     }
 }
 function pass(celltext, conds) { 
@@ -176,6 +175,33 @@ function getColumnNumber(title) {
     }
     return colNo;
 }
+function getClassAttributes(className) {
+    let arrAttributes = [];
+    let style = document.querySelectorAll("style");
+    for (let i = 0; i < style.length; i++) { 
+        let rules = style[i].sheet.cssRules;
+        for (let i = 0; i < rules.length; i++) {
+            let rule = rules[i];
+            if (rule.selectorText == "." + className) { 
+                arrAttributes = rule.cssText.replace("." + className,"").replace("{","").replace("}","");
+            }
+        }
+    }
+    return arrAttributes;
+}
+function getAttributes() { 
+    let arrClassAttributes = [];
+    for (let i = 0; i < data.length; i++) {
+        if (!arrClassAttributes.includes(data[i].class)) {
+            let className = data[i].class;
+            let arrStyles = getClassAttributes(data[i].class);
+            let obj = {"name":className, "styles":arrStyles};
+            arrClassAttributes.push(obj);
+        }
+    }
+    return arrClassAttributes;
+}
+
 var el = document.querySelector(tableClassName + " .table"),
 options = {
     characterData: true,
@@ -193,18 +219,19 @@ observer.observe(el, options);
 1. Create a Global Script and call it NumberColumnsStyler
 2. Add the input parameters below to the script
 
-<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DGClassName</td><td>Add this to the DataGrid (DG)</td></tr></table>
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td> A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>Conditions</td><td>A List of type *Conditions*</td></tr><tr><td>DataGridClass</td><td>Add this to the DataGrid (DG)</td></tr></table>
 
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action. You will see an error in the Validations Panel that says "Invalid script was detected". You can safely ignore this error. 
 ```
 var columnHeading = ~.Parameters.Input.ColumnHeading;
-var tableClassName = "." + ~.Parameters.Input.DGClassName;
+var tableClassName = "." + ~.Parameters.Input.DataGridClass;
 var data = ~.Parameters.Input.Conditions;
 var attachtorow = ~.Parameters.Input.AttachToRow;
 
 function styleRows() {
     let columnNumber = getColumnNumber(columnHeading);
     let arrPageRows = document.querySelectorAll(tableClassName + " tbody tr");
+    let arrStyles = getAttributes();
     for (let i = 0; i < arrPageRows.length; i++) {
         let parentEl = arrPageRows[i];
         let cell = parentEl.querySelector("td:nth-child(" + columnNumber + ") div");
@@ -213,17 +240,21 @@ function styleRows() {
                 parentEl.classList.remove(data[i].class);
                 cell.parentElement.classList.remove(data[i].class);
                 if (pass(cell.innerText, data[i].conditions)) {
-                    attachClass(cell, parentEl, data[i].class);
+                    attachClass(cell, parentEl, data[i].class, arrStyles);
                 }
             }
         }
     }
 }
-function attachClass(td, tr, classname) { 
+function attachClass(td, tr, classname, styles) { 
+    let ob = styles.find(o => o.name === classname);
+    console.log(styles.find(o => o.name === classname));
     if (attachtorow) {
-        tr.classList.add(classname);
+        //tr.classList.add(classname);
+        tr.setAttribute("style", ob.styles);
     } else { 
-        td.parentElement.classList.add(classname);
+        //td.parentElement.classList.add(classname);
+        td.parentElement.setAttribute("style", ob.styles);
     }
 }
 function pass(celltext, conds) { 
@@ -247,6 +278,35 @@ function getColumnNumber(title) {
     }
     return colNo;
 }
+
+function getClassAttributes(className) {
+    let arrAttributes = [];
+    let style = document.querySelectorAll("style");
+    for (let i = 0; i < style.length; i++) { 
+        let rules = style[i].sheet.cssRules;
+        for (let i = 0; i < rules.length; i++) {
+            let rule = rules[i];
+            if (rule.selectorText == "." + className) { 
+                arrAttributes = rule.cssText.replace("." + className,"").replace("{","").replace("}","");
+            }
+        }
+    }
+    return arrAttributes;
+}
+
+function getAttributes() { 
+    let arrClassAttributes = [];
+    for (let i = 0; i < data.length; i++) {
+        if (!arrClassAttributes.includes(data[i].class)) {
+            let className = data[i].class;
+            let arrStyles = getClassAttributes(data[i].class);
+            let obj = {"name":className, "styles":arrStyles};
+            arrClassAttributes.push(obj);
+        }
+    }
+    return arrClassAttributes;
+}
+
 var el = document.querySelector(tableClassName + " .table"),
 options = {
     characterData: true,
@@ -264,18 +324,19 @@ observer.observe(el, options);
 1. Create a Global Script and call it TextColumnsStyler
 2. Add the input parameters below to the script
 
-<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td>A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>CellClassNames</td><td>a List of type *Any*</td></tr><tr><td>DGClassName</td><td>Add this to the DataGrid (DG)</td></tr></table>
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>AttachToRow</td><td>A boolean</td></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>CellClassNames</td><td>a List of type *Any*</td></tr><tr><td>DataGridClass</td><td>Add this to the DataGrid (DG)</td></tr></table>
 
 2. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```
 var columnHeading = ~.Parameters.Input.ColumnHeading;
-var tableClassName = "." + ~.Parameters.Input.DGClassName;
+var tableClassName = "." + ~.Parameters.Input.DataGridClass;
 var attachtorow = ~.Parameters.Input.AttachToRow;
 var cellclassnames = ~.Parameters.Input.CellClassNames;
 
 function styleRows() {
     let columnNumber = getColumnNumber(columnHeading);
     let arrPageRows = document.querySelectorAll(tableClassName + " tbody tr");
+    let arrStyles = getAttributes();
     for (let i = 0; i < arrPageRows.length; i++) {
         let parentEl = arrPageRows[i];
         let cell = parentEl.querySelector("td:nth-child(" + columnNumber + ") div");
@@ -289,15 +350,18 @@ function styleRows() {
         let cell = parentEl.querySelector("td:nth-child(" + columnNumber + ") div");
         if (cell) {
             let cellText = cell.innerText.toLowerCase();
-            attachClass(cell, parentEl, cellText.replace(" ","_"));
+            attachClass(cell, parentEl, cellText.replace(" ","_"), arrStyles);
         }
     }
 }
-function attachClass(td, tr, classname) { 
+function attachClass(td, tr, classname, styles) { 
+    let ob = styles.find(o => o.name === classname);
     if (attachtorow) {
-        tr.classList.add(classname);
+        //tr.classList.add(classname);
+        tr.setAttribute("style", ob.styles);
     } else { 
-        td.parentElement.classList.add(classname);
+        //td.parentElement.classList.add(classname);
+        td.parentElement.setAttribute("style", ob.styles);
     }
 }
 function getColumnNumber(title) { 
@@ -310,6 +374,33 @@ function getColumnNumber(title) {
     }
     return colNo;
 }
+function getClassAttributes(className) {
+    let arrAttributes = [];
+    let style = document.querySelectorAll("style");
+    for (let i = 0; i < style.length; i++) { 
+        let rules = style[i].sheet.cssRules;
+        for (let i = 0; i < rules.length; i++) {
+            let rule = rules[i];
+            if (rule.selectorText == "." + className) { 
+                arrAttributes = rule.cssText.replace("." + className,"").replace("{","").replace("}","");
+            }
+        }
+    }
+    return arrAttributes;
+}
+function getAttributes() { 
+    let arrClassAttributes = [];
+    for (let i = 0; i < cellclassnames.length; i++) {
+        if (!arrClassAttributes.includes(cellclassnames[i])) {
+            let className = cellclassnames[i];
+            let arrStyles = getClassAttributes(cellclassnames[i]);
+            let obj = {"name":className, "styles":arrStyles};
+            arrClassAttributes.push(obj);
+        }
+    }
+    return arrClassAttributes;
+}
+
 var el = document.querySelector(tableClassName + " .table"),
 options = {
     characterData: true,
@@ -361,7 +452,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 | Parameter | Value | Note |
 |---------|-------------|-------------------|
-| DGClassName | *watched* | This must be the class name you assigned to the DataGrid |
+| DataGridClass | *watched* | This must be the class name you assigned to the DataGrid |
 | Column Heading | Copy the heading from the DataGrid or the 'Header Text' property of the DataGrid columnw | Column headings might contain spaces that your database column does not contain |
 | Conditions | The above mentioned list of conditions | |
 | AttachToRow | =true or =false | A boolean to indicate if the row or cell will be styled |
@@ -408,7 +499,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 | Parameter | Value | Note |
 |---------|-------------|-------------------|
-| DGClassName | *watched* | This must be the class name you assigned to the DataGrid |
+| DataGridClass | *watched* | This must be the class name you assigned to the DataGrid |
 | Column Heading | Copy the heading from the DataGrid or the 'Header Text' property of the DataGrid column | Column headings might contain spaces that your database column does not contain |
 | Conditions | The above mentioned list of conditions | |
 | AttachToRow | =true or =false | A boolean to indicate if the row or cell will be styled |
@@ -448,7 +539,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 | Parameter | Value | Note |
 |---------|-------------|---------|
-| DGClassName | *watched* | This must be the class name you assigned to the DataGrid |
+| DataGridClass | *watched* | This must be the class name you assigned to the DataGrid |
 | Column Heading | Copy the heading from the DataGrid or the 'Header Text' property of the DataGrid column | Column headings might contain spaces that your database column does not contain |
 | CellClassNames | The above mentioned list of class names | |
 | AttachToRow | =true or =false | A boolean to indicate if the row or cell will be styled |
