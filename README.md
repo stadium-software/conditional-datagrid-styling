@@ -14,34 +14,18 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 ## Contents
 
-1. \\[Database](#database)
-2. [DataGrid](#datagrid)
-3. [Conditions Type](#conditions-type)
-4. [CSS Styles](#css-styles)
-5. [Global Scripts](#global-scripts)
-6. [Page.Load Event Handler](#pageload-event-handlers)
-7. [Supported Operators](#supported-operators)
-8. [Disabling links](#disabling-links)
+1. \\[Database, Connector and DataGrid](#database-connector-and-datagrid)
+2. [Conditions Type](#conditions-type)
+3. [CSS Styles](#css-styles)
+4. [Global Scripts](#global-scripts)
+5. [Page.Load Event Handler](#pageload-event-handlers)
+6. [Supported Operators](#supported-operators)
+7. [Disabling links](#disabling-links)
 
 <hr>
 
-## Database
-Create the MSSQL database by running the SQL script in the Database folder of this repo. 
-
-## DataGrid
-
-1. Add a Database connector to the Database you created in the step above 
-2. Add a query to select the data for the DataGrid
-```
-select * from MyData
-```
-3. Add a DataGrid Control to a page
-4. Add a class entitled "watched" to the DataGrid classes property
-5. Define DataGrid columns in the *Columns* property of the DataGrid
-6. Open the StartPage.load event handler
-7. Drag the query in the StartPage.Load event handler of the page
-8. Drag a SetValue function under the query in the StartPage.load event handler
-9. Assign the data returned by the query to the DataGrid
+### Database, Connector and DataGrid
+Use the instructions from [this repo](/stadium-software/samples-database) to setup the database and DataGrid for this sample
 
 <hr>
 
