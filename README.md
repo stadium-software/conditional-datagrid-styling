@@ -602,6 +602,8 @@ Link columns are styled by adding CSS classes to the stylesheet that correspond 
    2. ColumHeading: The heading of the column you wish to style
    3. CellClass: The name of the class that should be attached to each cell
 
+![Link Script Parameters](images/LinkScriptParameters.png)
+
 ## Supported Operators
 
 | Operator | Description |
