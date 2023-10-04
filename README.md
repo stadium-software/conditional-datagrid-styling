@@ -1,7 +1,7 @@
 # Conditional Datagrid Styling
 A sample that allows for styling datagrid rows or cells by cell content
 
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/dcb891a6-60c9-4837-913b-ccc384dde8ef
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/11af2f28-5fbe-46f1-9a47-2161984bf4ac
 
 <hr>
 
