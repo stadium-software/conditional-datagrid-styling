@@ -10,6 +10,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 1.2 Enhanced script to include style attributes of attached classes in tr or tr tags directly
 
+1.3 Added link column styler script
+
 <hr>
 
 ## Contents
@@ -86,6 +88,24 @@ Paste the CSS below into the application *Stylesheet*
 .yellow-bg {
 	background-color: rgba(247, 223, 99, .5);
 }
+
+.edit-image button,
+.edit-image button:hover {
+	background-image: url('/src/assets/EmbeddedFiles/edit.png');
+	background-repeat: no-repeat;
+	background-size: 20px;
+	background-position: left center;
+	color: transparent;
+}
+.delete-image button,
+.delete-image button:hover {
+	background-image: url('/src/assets/EmbeddedFiles/delete.png');
+	background-repeat: no-repeat;
+	background-size: 20px;
+	background-position: left center;
+	color: transparent;
+}
+
 ```
 
 ## Global Scripts
@@ -97,6 +117,7 @@ The sample caters for three data types
 | [DateColumnsStyler](#DateColumnsStyler) | 
 | [NumberColumnsStyler](#NumberColumnsStyler) |
 | [TextColumnsStyler](#TextColumnsStyler) | 
+| [LinkColumnsStyler](#LinkColumnsStyler) | 
 
 <hr>
 
@@ -392,6 +413,48 @@ options = {
 },
 observer = new MutationObserver(styleRows);
 observer.observe(el, options);
+```
+
+### LinkColumnsStyler
+
+1. Create a Global Script and call it LinkColumnsStyler
+2. Add the input parameters below to the script
+
+<table><tr><th>Parameters</th><th>Notes</th></tr><tr><td>ColumnHeading</td><td>Headings might contain spaces</td></tr><tr><td>CellClass</td><td>The name of the class to be attached to the cells</td></tr><tr><td>DataGridClass</td><td>Add this to the DataGrid (DG)</td></tr></table>
+
+3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
+```
+let cellclassname = ~.Parameters.Input.CellClass;
+let dgClassName = "." + ~.Parameters.Input.DataGridClass;
+let dg = document.querySelector(dgClassName);
+let table = dg.querySelector("table");
+let columnHeading = ~.Parameters.Input.ColumnHeading;
+let columnNumber = getColumnNumber(columnHeading);
+let options = {
+    characterData: true,
+    attributes: false,
+    childList: true,
+    subtree: true,
+    characterDataOldValue: true,
+}, observer = new MutationObserver(attachStyle);
+observer.observe(table, options);
+
+function attachStyle() {
+    let arrDGCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ")");
+    for (let i = 0; i < arrDGCells.length; i++) {
+        arrDGCells[i].classList.add(cellclassname);
+    }
+}
+function getColumnNumber(title) { 
+    let arrHeadings = table.querySelectorAll("thead th a");
+    let colNo = 0;
+    for (let i = 0; i < arrHeadings.length; i++) {
+        if (arrHeadings[i].innerText.toLowerCase() == title.toLowerCase()) { 
+            colNo = i + 1;
+        }
+    }
+    return colNo;
+}
 ```
 
 <hr>
