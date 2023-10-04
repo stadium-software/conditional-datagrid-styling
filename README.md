@@ -592,6 +592,16 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 5. Drag in the query and SetValue to populate the DataGrid as per usual
 
+### Link Columns
+
+Link columns are styled by adding CSS classes to the stylesheet that correspond with the values in the ClassName parameter of the LinkColumnStyler script.
+
+1. For every link column you want to style, drag the LinkColumnsStyler script into the Page.Load
+2. Enter the Input parameters
+   1. DataGridClass: The class name you assigned to your DataGrid
+   2. ColumHeading: The heading of the column you wish to style
+   3. CellClass: The name of the class that should be attached to each cell
+
 ## Supported Operators
 
 | Operator | Description |
