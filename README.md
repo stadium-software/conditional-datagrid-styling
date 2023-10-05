@@ -285,7 +285,7 @@ observer.observe(table, options);
    1. class: The name of teh CSS class that must be attached to the item when the conditions are met
    2. conditions; A list of conditions that must all be met
 
-![Conditions-Type](https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/d9274b0a-78db-4f01-9125-bfa86fd7f5f5)
+![Conditions-Type](https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/19bc9b6c-6d2e-43e3-8865-219a01409000)
 
 ### Number Column Page.Load Event Setup
 
