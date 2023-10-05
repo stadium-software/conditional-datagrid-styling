@@ -318,7 +318,7 @@ observer.observe(table, options);
 }]
 ```
 
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/bd8e057f-40f6-429d-9577-603438c63d3a
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/9b83768b-94ba-4e01-81b3-9303292fe314
 
 4. Drag the *NumberColumnsStyler* script under the List
 5. Provide the input parameters for the script
