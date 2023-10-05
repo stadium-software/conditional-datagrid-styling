@@ -44,7 +44,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
   - [Supported Operators](#supported-operators)
 
 ## Application Setup
-1. Check the *Enable Style Sheet* checkbox in the application properties
+Check the *Enable Style Sheet* checkbox in the application properties
 
 ## Database, Connector and DataGrid
 
@@ -151,6 +151,8 @@ observer.observe(table, options);
    3. StyleRow: Enter *true* if you want the entire row to be styled. By default only the cell is styled
    4. ColumnTextValues: The List of text values
 7. Populate the DataGrid with data
+
+![](images/TextScriptParameters.png)
 
 ### Text Column Stylesheet
 
