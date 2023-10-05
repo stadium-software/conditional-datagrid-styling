@@ -165,18 +165,16 @@ Rules
 
 Example:
 ```
+.no_data {
+    background-color: rgba(214, 170, 86, .5);
+}
 .subscribed {
     background-color: rgba(0, 77, 54, .5);
     color: white;
 }
-
 .unsubscribed {
     background-color: rgba(247, 42, 99, .5);
     color: white;
-}
-
-.no_data {
-    background-color: rgba(214, 170, 86, .5);
 }
 ```
 
