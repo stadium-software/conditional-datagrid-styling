@@ -461,7 +461,7 @@ observer.observe(table, options);
    1. class: The name of teh CSS class that must be attached to the item when the conditions are met
    2. conditions; A list of conditions that must all be met
 
-![Conditions-type](https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/718c7be0-c55a-40af-b769-2a06c2a72395)
+![Conditions-Type](https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/19bc9b6c-6d2e-43e3-8865-219a01409000)
 
 ### Date Column Page.Load Event Setup
 
@@ -557,7 +557,6 @@ function attachStyle() {
         console.log(arrDGCells[i].innerHTML);
         arrDGCells[i].setAttribute("title", columnHeading);
         arrDGCells[i].classList.add(cellclassname);
-        arrDGCells[i].innerHTML = "";
     }
 }
 function getColumnNumber(title) { 
@@ -600,6 +599,7 @@ Example:
     background-position: left center;
     height: 20px;
     width: 20px;
+    font-size: 0;
 }
 
 .delete-image,
@@ -610,6 +610,7 @@ Example:
     background-position: left center;
     height: 20px;
     width: 20px;
+    font-size: 0;
 }
 ```
 
