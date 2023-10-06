@@ -147,9 +147,9 @@ observer.observe(table, options);
 5. Drag the *TextColumnsStyler* script under the list
 6. Provide the input parameters for the script
    1. DataGridClass: The classname you assigned to your DataGrid
-   2. ColumnHeading: The heading of the column that contains the text values (with spaces)
+   2. ColumnHeading: The heading of the column that contains the text values
    3. StyleRow: Enter *true* if you want the entire row to be styled. By default only the cell is styled
-   4. ColumnTextValues: The List of text values
+   4. ColumnTextValues: Select the List of text values you just created from the dropdown
 7. Populate the DataGrid with data
 
 ![](images/TextScriptParameters.png)
@@ -323,7 +323,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 4. Drag the *NumberColumnsStyler* script under the List
 5. Provide the input parameters for the script
    1. DataGridClass: The classname you assigned to your DataGrid
-   2. Column Heading: The heading of the column that contains the text values (with spaces)
+   2. Column Heading: The heading of the column that contains the text values
    3. Conditions: The list of conditions 
    4. StyleRow: Enter *true* if you want the entire row to be styled. By default only the cell is styled
 6. Populate the DataGrid with data
@@ -497,7 +497,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 4. Drag the *DateColumnsStyler* script under the List
 5. Provide the input parameters for the script
    1. DataGridClass: The classname you assigned to your DataGrid
-   2. Column Heading: The heading of the column that contains the text values (with spaces)
+   2. Column Heading: The heading of the column that contains the text values
    3. Conditions: The list of conditions 
    4. StyleRow: Enter *true* if you want the entire row to be styled. By default only the cell is styled
 6. Populate the DataGrid with data
@@ -581,7 +581,7 @@ function getColumnNumber(title) {
 1. For each link column you want to style, drag a *LinkColumnsStyler* script into the script
 6. Provide the input parameters for the script
    1. DataGridClass: The classname you assigned to your DataGrid
-   2. Column Heading: The heading of the column that contains the text values (with spaces)
+   2. Column Heading: The heading of the column that contains the text values
    4. CellClass: The CSS class to be attached to the link element in the column
 7. Populate the DataGrid with data
 
