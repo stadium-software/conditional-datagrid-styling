@@ -112,7 +112,7 @@ function getColumnNumber(title) {
     let arrHeadings = table.querySelectorAll("thead th a");
     let colNo = 0;
     for (let i = 0; i < arrHeadings.length; i++) {
-        if (arrHeadings[i].innerText.toLowerCase() == title.toLowerCase()) { 
+        if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
             colNo = i + 1;
         }
     }
@@ -147,7 +147,7 @@ observer.observe(table, options);
 5. Drag the *TextColumnsStyler* script under the list
 6. Provide the input parameters for the script
    1. DataGridClass: The classname you assigned to your DataGrid
-   2. Column Heading: The heading of the column that contains the text values (with spaces)
+   2. ColumnHeading: The heading of the column that contains the text values (with spaces)
    3. StyleRow: Enter *true* if you want the entire row to be styled. By default only the cell is styled
    4. ColumnTextValues: The List of text values
 7. Populate the DataGrid with data
@@ -254,7 +254,7 @@ function getColumnNumber(title) {
     let arrHeadings = table.querySelectorAll("thead th a");
     let colNo = 0;
     for (let i = 0; i < arrHeadings.length; i++) {
-        if (arrHeadings[i].innerText.toLowerCase() == title.toLowerCase()) { 
+        if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
             colNo = i + 1;
         }
     }
@@ -430,7 +430,7 @@ function getColumnNumber(title) {
     let arrHeadings = table.querySelectorAll("thead th a");
     let colNo = 0;
     for (let i = 0; i < arrHeadings.length; i++) {
-        if (arrHeadings[i].innerText.toLowerCase() == title.toLowerCase()) { 
+        if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
             colNo = i + 1;
         }
     }
@@ -563,7 +563,7 @@ function getColumnNumber(title) {
     let arrHeadings = table.querySelectorAll("thead th a");
     let colNo = 0;
     for (let i = 0; i < arrHeadings.length; i++) {
-        if (arrHeadings[i].innerText.toLowerCase() == title.toLowerCase()) { 
+        if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
             colNo = i + 1;
         }
     }
