@@ -67,6 +67,7 @@ How to style the cells or row by the text found in a specific column
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClass = "." + ~.Parameters.Input.DataGridClass;
 let table = document.querySelector(dgClass + " table");
+if (!table) table = document.querySelector(".data-grid-container table");
 table.classList.add("datagrid-custom-column-styling");
 let attachtorow = ~.Parameters.Input.StyleRow;
 var cellclassnames = ~.Parameters.Input.ColumnTextValues;
@@ -195,6 +196,7 @@ How to style the cells or row by the number values found in a specific column
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClass = "." + ~.Parameters.Input.DataGridClass;
 let table = document.querySelector(dgClass + " table");
+if (!table) table = document.querySelector(".data-grid-container table");
 table.classList.add("datagrid-custom-column-styling");
 let data = ~.Parameters.Input.Conditions;
 let attachtorow = ~.Parameters.Input.StyleRow;
@@ -372,6 +374,7 @@ How to style the cells or row by the date values found in a specific column
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClass = "." + ~.Parameters.Input.DataGridClass;
 let table = document.querySelector(dgClass + " table");
+if (!table) table = document.querySelector(".data-grid-container table");
 table.classList.add("datagrid-custom-column-styling");
 let data = ~.Parameters.Input.Conditions;
 let attachtorow = ~.Parameters.Input.StyleRow;
@@ -542,6 +545,7 @@ How to style the cells of a link column
 let cellclassname = ~.Parameters.Input.CellClass;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelector(dgClassName);
+if (!dg) dg = document.querySelector(".data-grid-container table");
 let table = dg.querySelector("table");
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let columnNumber = getColumnNumber(columnHeading);
