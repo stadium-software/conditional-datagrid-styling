@@ -625,7 +625,7 @@ Using some CSS, you can also use this module to change the content of other cell
 2. Attach the class to the row (StyleRow = true)
 3. Use any of CSS below to manipulate the link column 
 
-The examples assume the class you attach is called *link-col* and the link is in the **first column** (td:nth-child(1)) of your DataGrid.
+The examples assume the class you attach is called *no_data* and the link is in the **first column** (td:nth-child(1)) of your DataGrid.
 
 Making a link look disabled
 ```
