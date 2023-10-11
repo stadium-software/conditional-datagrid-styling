@@ -619,13 +619,14 @@ Example:
 ```
 
 ## Disabling Links
-Using some CSS, you can also use this module to change the content of other cells in the row. Like this you can, for example, remove a link from another cell in the row. 
+Using some CSS, you can also use this module to change the content of other cells in the row. Like this you can, for example, remove a link from another cell in the row. This method does **NOT** remove access to the page a hidden link pointed to. Users who know how can still run any scripts the link would have run or navigate to any page the link pointed to. 
 
+
+**Using CSS to hide a link**
 1. Create your conditions as above
-2. Attach the class to the row (StyleRow = true)
-3. Use any of CSS below to manipulate the link column 
+2. Use any of CSS below to manipulate the link column 
 
-The examples assume the class you attach is called *no_data* and the link is in the **first column** (td:nth-child(1)) of your DataGrid.
+The examples assume the class you attach is called *no_data* and the link is in the **first column** (td:nth-child(1)) of your DataGrid. 
 
 Making a link look disabled
 ```
