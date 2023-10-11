@@ -629,7 +629,7 @@ The examples assume the class you attach is called *link-col* and the link is in
 
 Making a link look disabled
 ```
-.link-col td:nth-child(1) button {
+tr:has(.no_data) td:nth-child(1) button {
     /*Disable the click event*/
     pointer-events: none;
 
@@ -643,11 +643,11 @@ Making a link look disabled
 
 Hiding the link and injecting text into the cell
 ```
-.link-col td:nth-child(1) button {
+tr:has(.no_data) td:nth-child(1) button {
     /*Hide the link away*/
     display: none;
 }
-.link-col td:nth-child(1) div:after {
+tr:has(.no_data) td:nth-child(1) div:after {
     /*Add any text into the cell or enter an HTML entity (try "\26D4" https://www.w3schools.com/cssref/css_entities.php)*/
     content: "Disabled";
 }
