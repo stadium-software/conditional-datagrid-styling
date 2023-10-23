@@ -63,7 +63,7 @@ How to style the cells or row by the text found in a specific column
    3. DataGridClass
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
-```
+```javascript
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClass = "." + ~.Parameters.Input.DataGridClass;
 let table = document.querySelector(dgClass + " table");
@@ -165,7 +165,7 @@ Rules
 2. Replace spaces in text values with underscores
 
 Example:
-```
+```css
 .no_data {
     background-color: rgba(214, 170, 86, .5);
 }
@@ -192,7 +192,7 @@ How to style the cells or row by the number values found in a specific column
    3. DataGridClass
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
-```
+```javascript
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClass = "." + ~.Parameters.Input.DataGridClass;
 let table = document.querySelector(dgClass + " table");
@@ -301,7 +301,7 @@ observer.observe(table, options);
       3. Check out the [supported Javascript comparison operators](#supported-operators)
 
 *Conditions Value Property Example*
-```
+```javascript
 = [{
 	"class": "orange-bg",
 	"conditions": ["<2",">0"]
@@ -335,7 +335,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 For each class you added in your conditions list, create a corresponding css class in your stylesheet
 
 Examples
-```
+```css
 .orange-bg {
     background-color: rgba(152, 237, 107, .5);
     color: black;
@@ -370,7 +370,7 @@ How to style the cells or row by the date values found in a specific column
    3. DataGridClass
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
-```
+```javascript
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClass = "." + ~.Parameters.Input.DataGridClass;
 let table = document.querySelector(dgClass + " table");
@@ -479,7 +479,7 @@ observer.observe(table, options);
       4. Check out the [supported Javascript comparison operators](#supported-operators)
 
 *Conditions Value Property Example*
-```
+```javascript
 = [{
 	"class": "orange-bg",
 	"conditions": ["<2",">0"]
@@ -510,7 +510,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 For each class you added in your conditions list, create a corresponding css class in your stylesheet
 
 Examples
-```
+```css
 .orange-bg {
     background-color: rgba(152, 237, 107, .5);
     color: black;
@@ -541,7 +541,7 @@ How to style the cells of a link column
    2. ColumnHeading
    3. DataGridClass
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
-```
+```javascript
 let cellclassname = ~.Parameters.Input.CellClass;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelector(dgClassName);
@@ -594,7 +594,7 @@ function getColumnNumber(title) {
 Each class specified in a CellClass input parameter requires a matching CSS class in the Stylesheet. To display images in a cell, drag the images into the EmbeddedFiles of the application and reference them in the stylesheet as shown below
 
 Example:
-```
+```css
 .edit-image,
 .edit-image:hover {
     background-image: url('/src/assets/EmbeddedFiles/edit.png');
@@ -621,7 +621,6 @@ Example:
 ## Disabling Links
 Using some CSS, you can also use this module to change the content of other cells in the row. Like this you can, for example, remove a link from another cell in the row. This method does **NOT** remove access to the page a hidden link pointed to. Users who know how can still run any scripts the link would have run or navigate to any page the link pointed to. 
 
-
 **Using CSS to hide a link**
 1. Create your conditions as above
 2. Use any of CSS below to manipulate the link column 
@@ -629,7 +628,7 @@ Using some CSS, you can also use this module to change the content of other cell
 The examples assume the class you attach is called *no_data* and the link is in the **first column** (td:nth-child(1)) of your DataGrid. 
 
 Making a link look disabled
-```
+```css
 tr:has(.no_data) td:nth-child(1) button {
     /*Disable the click event*/
     pointer-events: none;
@@ -643,7 +642,7 @@ tr:has(.no_data) td:nth-child(1) button {
 ```
 
 Hiding the link and injecting text into the cell
-```
+```css
 tr:has(.no_data) td:nth-child(1) button {
     /*Hide the link away*/
     display: none;
