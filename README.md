@@ -301,7 +301,7 @@ observer.observe(table, options);
       3. Check out the [supported Javascript comparison operators](#supported-operators)
 
 *Conditions Value Property Example*
-```javascript
+```json
 = [{
 	"class": "orange-bg",
 	"conditions": ["<2",">0"]
@@ -479,7 +479,7 @@ observer.observe(table, options);
       4. Check out the [supported Javascript comparison operators](#supported-operators)
 
 *Conditions Value Property Example*
-```javascript
+```json
 = [{
 	"class": "orange-bg",
 	"conditions": ["<2",">0"]
