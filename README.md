@@ -11,6 +11,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 1.3 Added link column styler script. Optimised scripts. Styles no longer injected.
 
+1.4 Added logic to detect uniqueness of DataGrid classname
+
 ## Contents
 
 - [Conditional Datagrid Styling](#conditional-datagrid-styling)
@@ -65,9 +67,17 @@ How to style the cells or row by the text found in a specific column
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
 let columnHeading = ~.Parameters.Input.ColumnHeading;
-let dgClass = "." + ~.Parameters.Input.DataGridClass;
-let table = document.querySelector(dgClass + " table");
-if (!table) table = document.querySelector(".data-grid-container table");
+let dgClassName = "." + ~.Parameters.Input.DataGridClass;
+let dg = document.querySelectorAll(dgClassName);
+if (dg.length == 0) {
+    dg = document.querySelector(".data-grid-container");
+} else if (dg.length > 1) {
+    console.error("The class '" + dgClassName + "' is assigned to multiple DataGrids. DataGrids using this script must have unique classnames");
+    return false;
+} else { 
+    dg = dg[0];
+}
+let table = dg.querySelector("table");
 table.classList.add("datagrid-custom-column-styling");
 let attachtorow = ~.Parameters.Input.StyleRow;
 var cellclassnames = ~.Parameters.Input.ColumnTextValues;
@@ -195,9 +205,17 @@ How to style the cells or row by the number values found in a specific column
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
 let columnHeading = ~.Parameters.Input.ColumnHeading;
-let dgClass = "." + ~.Parameters.Input.DataGridClass;
-let table = document.querySelector(dgClass + " table");
-if (!table) table = document.querySelector(".data-grid-container table");
+let dgClassName = "." + ~.Parameters.Input.DataGridClass;
+let dg = document.querySelectorAll(dgClassName);
+if (dg.length == 0) {
+    dg = document.querySelector(".data-grid-container");
+} else if (dg.length > 1) {
+    console.error("The class '" + dgClassName + "' is assigned to multiple DataGrids. DataGrids using this script must have unique classnames");
+    return false;
+} else { 
+    dg = dg[0];
+}
+let table = dg.querySelector("table");
 table.classList.add("datagrid-custom-column-styling");
 let data = ~.Parameters.Input.Conditions;
 let attachtorow = ~.Parameters.Input.StyleRow;
@@ -374,9 +392,17 @@ How to style the cells or row by the date values found in a specific column
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
 let columnHeading = ~.Parameters.Input.ColumnHeading;
-let dgClass = "." + ~.Parameters.Input.DataGridClass;
-let table = document.querySelector(dgClass + " table");
-if (!table) table = document.querySelector(".data-grid-container table");
+let dgClassName = "." + ~.Parameters.Input.DataGridClass;
+let dg = document.querySelectorAll(dgClassName);
+if (dg.length == 0) {
+    dg = document.querySelector(".data-grid-container");
+} else if (dg.length > 1) {
+    console.error("The class '" + dgClassName + "' is assigned to multiple DataGrids. DataGrids using this script must have unique classnames");
+    return false;
+} else { 
+    dg = dg[0];
+}
+let table = dg.querySelector("table");
 table.classList.add("datagrid-custom-column-styling");
 let data = ~.Parameters.Input.Conditions;
 let attachtorow = ~.Parameters.Input.StyleRow;
@@ -547,8 +573,15 @@ How to style the cells of a link column
 ```javascript
 let cellclassname = ~.Parameters.Input.CellClass;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
-let dg = document.querySelector(dgClassName);
-if (!dg) dg = document.querySelector(".data-grid-container table");
+let dg = document.querySelectorAll(dgClassName);
+if (dg.length == 0) {
+    dg = document.querySelector(".data-grid-container");
+} else if (dg.length > 1) {
+    console.error("The class '" + dgClassName + "' is assigned to multiple DataGrids. DataGrids using this script must have unique classnames");
+    return false;
+} else { 
+    dg = dg[0];
+}
 let table = dg.querySelector("table");
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let columnNumber = getColumnNumber(columnHeading);
