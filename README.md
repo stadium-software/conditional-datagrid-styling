@@ -134,7 +134,8 @@ observer.observe(table, options);
 ### Text Column Page Setup
 
 1. Drag a *DataGrid* control to the page (if you don't already have one)
-2. Add a class to identify the DataGrid *Classes* property (e.g. watched)
+2. Add a class to uniquely identify this DataGrid *Classes* property (e.g. watched)
+3. NOTE: Multiple DataGrids on a page may not have the same class assigned
 
 ### Text Column Page.Load Event Handler Setup
 
@@ -277,7 +278,8 @@ observer.observe(table, options);
 ### Number Column Page Setup
 
 1. Drag a *DataGrid* control to the page (if you don't already have one)
-2. Add a class to identify the DataGrid *Classes* property (e.g. watched)
+2. Add a class to uniquely identify the DataGrid *Classes* property (e.g. watched)
+3. NOTE: Multiple DataGrids on a page may not have the same class assigned
 
 ### Conditions Type
 
@@ -454,7 +456,8 @@ observer.observe(table, options);
 ### Date Column Page Setup
 
 1. Drag a *DataGrid* control to the page (if you don't already have one)
-2. Add a class to identify the DataGrid *Classes* property (e.g. watched)
+2. Add a class to uniquely identify the DataGrid *Classes* property (e.g. watched)
+3. NOTE: Multiple DataGrids on a page may not have the same class assigned
 
 ### Conditions Type
 
@@ -578,7 +581,8 @@ function getColumnNumber(title) {
 ### Link Column Page Setup
 
 1. Drag a *DataGrid* control to the page (if you don't already have one)
-2. Add a class to identify the DataGrid *Classes* property (e.g. watched)
+2. Add a class to uniquely identify the DataGrid *Classes* property (e.g. watched)
+3. NOTE: Multiple DataGrids on a page may not have the same class assigned
 
 ### Link Column Page.Load Event Handler Setup
 
