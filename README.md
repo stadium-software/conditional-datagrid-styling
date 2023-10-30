@@ -13,10 +13,15 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 1.4 Added logic to detect uniqueness of DataGrid classname
 
+## Sample applications
+This repo contains one Stadium 6.7 application
+[ConditionalDGCell.sapz](Stadium6/ConditionalDGCell.sapz?raw=true)
+
 ## Contents
 
 - [Conditional Datagrid Styling](#conditional-datagrid-styling)
   - [Change Log](#change-log)
+  - [Sample applications](#sample-applications)
   - [Contents](#contents)
   - [Application Setup](#application-setup)
   - [Database, Connector and DataGrid](#database-connector-and-datagrid)
