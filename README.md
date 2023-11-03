@@ -99,20 +99,22 @@ function styleRows() {
     for (let i = 0; i < arrTableCells.length; i++) {
         let cell = arrTableCells[i];
         if (cell) {
-            let cellText = cell.innerText.toLowerCase().replace(" ","_");
+            let cellText = cell.textContent.toLowerCase().replace(" ","_");
             attachClass(cell, cellText);
         }
     }
 }
 function attachClass(td, classname) { 
-    let tr = td.closest("tr");
-    if (attachtorow) {
-        let cells = tr.cells;
-        for (let i = 0; i < cells.length; i++) {
-            cells[i].classList.add(classname);
+    if (classname) {
+        let tr = td.closest("tr");
+        if (attachtorow) {
+            let cells = tr.cells;
+            for (let i = 0; i < cells.length; i++) {
+                cells[i].classList.add(classname);
+            }
+        } else {
+            td.parentElement.classList.add(classname);
         }
-    } else { 
-        td.parentElement.classList.add(classname);
     }
 }
 function removeAllClasses() { 
