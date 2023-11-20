@@ -71,6 +71,7 @@ How to style the cells or row by the text found in a specific column
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
+/*Stadium Script Version 1.4*/
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -211,6 +212,7 @@ How to style the cells or row by the number values found in a specific column
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
+/*Stadium Script Version 1.4*/
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -398,6 +400,7 @@ How to style the cells or row by the date values found in a specific column
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
+/*Stadium Script Version 1.4*/
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -578,6 +581,7 @@ How to style the cells of a link column
    3. DataGridClass
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
+/*Stadium Script Version 1.4*/
 let cellclassname = ~.Parameters.Input.CellClass;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
