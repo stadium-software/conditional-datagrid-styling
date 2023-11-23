@@ -13,6 +13,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 1.4 Added logic to detect uniqueness of DataGrid classname
 
+1.5 Amended script to cater for changed DataGrid rendering in Stadium 6.6
+
 ## Sample applications
 This repo contains one Stadium 6.7 application
 [ConditionalDGCell.sapz](Stadium6/ConditionalDGCell.sapz?raw=true)
@@ -71,7 +73,7 @@ How to style the cells or row by the text found in a specific column
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/*Stadium Script Version 1.4*/
+/* Stadium Script Version 1.5 */
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -95,8 +97,9 @@ for (let i = 0; i < cellclassnames.length; i++) {
 let selectorsList = '.' + classes.join(",.");
 
 function styleRows() {
+    observer.disconnect();
     removeAllClasses();
-    let arrTableCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ") div");
+    let arrTableCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ")");
     for (let i = 0; i < arrTableCells.length; i++) {
         let cell = arrTableCells[i];
         if (cell) {
@@ -104,6 +107,7 @@ function styleRows() {
             attachClass(cell, cellText);
         }
     }
+    observer.observe(table, options);
 }
 function attachClass(td, classname) { 
     if (classname) {
@@ -114,7 +118,7 @@ function attachClass(td, classname) {
                 cells[i].classList.add(classname);
             }
         } else {
-            td.parentElement.classList.add(classname);
+            td.classList.add(classname);
         }
     }
 }
@@ -212,7 +216,7 @@ How to style the cells or row by the number values found in a specific column
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/*Stadium Script Version 1.4*/
+/* Stadium Script Version 1.5 */
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -236,8 +240,9 @@ for (let i = 0; i < data.length; i++) {
 let selectorsList = '.' + classes.join(",.");
 
 function styleRows() {
+    observer.disconnect();
     removeAllClasses();
-    let arrTableCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ") div");
+    let arrTableCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ")");
     for (let i = 0; i < arrTableCells.length; i++) {
         let cell = arrTableCells[i];
         if (cell) {
@@ -248,6 +253,7 @@ function styleRows() {
             }
         }
     }
+    observer.observe(table, options);
 }
 function attachClass(td, classname) { 
     let tr = td.closest("tr");
@@ -257,7 +263,7 @@ function attachClass(td, classname) {
             cells[i].classList.add(classname);
         }
     } else { 
-        td.parentElement.classList.add(classname);
+        td.classList.add(classname);
     }
 }
 function pass(celltext, conds) { 
@@ -400,7 +406,7 @@ How to style the cells or row by the date values found in a specific column
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/*Stadium Script Version 1.4*/
+/* Stadium Script Version 1.5 */
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -424,8 +430,9 @@ for (let i = 0; i < data.length; i++) {
 let selectorsList = '.' + classes.join(",.");
 
 function styleRows() {
+    observer.disconnect();
     removeAllClasses();
-    let arrTableCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ") div");
+    let arrTableCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ")");
     for (let i = 0; i < arrTableCells.length; i++) {
         let cell = arrTableCells[i];
         if (cell) {
@@ -436,6 +443,7 @@ function styleRows() {
             }
         }
     }
+    observer.observe(table, options);
 }
 function attachClass(td, classname) { 
     let tr = td.closest("tr");
@@ -445,7 +453,7 @@ function attachClass(td, classname) {
             cells[i].classList.add(classname);
         }
     } else { 
-        td.parentElement.classList.add(classname);
+        td.classList.add(classname);
     }
 }
 function pass(celltext, conds) { 
@@ -581,7 +589,7 @@ How to style the cells of a link column
    3. DataGridClass
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/*Stadium Script Version 1.4*/
+/* Stadium Script Version 1.5 */
 let cellclassname = ~.Parameters.Input.CellClass;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -695,7 +703,7 @@ tr:has(.no_data) td:nth-child(1) button {
     /*Hide the link away*/
     display: none;
 }
-tr:has(.no_data) td:nth-child(1) div:after {
+tr:has(.no_data) td:nth-child(1):after {
     /*Add any text into the cell or enter an HTML entity (try "\26D4" https://www.w3schools.com/cssref/css_entities.php)*/
     content: "Disabled";
 }
