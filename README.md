@@ -15,6 +15,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 1.5 Amended script to cater for changed DataGrid rendering in Stadium 6.6
 
+1.6 Fixed selectable column bug
+
 ## Sample applications
 This repo contains one Stadium 6.7 application
 [ConditionalDGCell.sapz](Stadium6/ConditionalDGCell.sapz?raw=true)
@@ -73,7 +75,7 @@ How to style the cells or row by the text found in a specific column
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/* Stadium Script Version 1.5 */
+/* Stadium Script Version 1.6 */
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -132,7 +134,7 @@ function removeAllClasses() {
     }
 }
 function getColumnNumber(title) { 
-    let arrHeadings = table.querySelectorAll("thead th a");
+    let arrHeadings = table.querySelectorAll("thead th");
     let colNo = 0;
     for (let i = 0; i < arrHeadings.length; i++) {
         if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
@@ -150,6 +152,7 @@ let options = {
     characterDataOldValue: true,
 },
 observer = new MutationObserver(styleRows);
+styleRows();
 observer.observe(table, options);
 ```
 
@@ -216,7 +219,7 @@ How to style the cells or row by the number values found in a specific column
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/* Stadium Script Version 1.5 */
+/* Stadium Script Version 1.6 */
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -287,7 +290,7 @@ function removeAllClasses() {
     }
 }
 function getColumnNumber(title) { 
-    let arrHeadings = table.querySelectorAll("thead th a");
+    let arrHeadings = table.querySelectorAll("thead th");
     let colNo = 0;
     for (let i = 0; i < arrHeadings.length; i++) {
         if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
@@ -305,6 +308,7 @@ let options = {
     characterDataOldValue: true,
 },
 observer = new MutationObserver(styleRows);
+styleRows();
 observer.observe(table, options);
 ```
 
@@ -406,7 +410,7 @@ How to style the cells or row by the date values found in a specific column
    4. StyleRow
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/* Stadium Script Version 1.5 */
+/* Stadium Script Version 1.6 */
 let columnHeading = ~.Parameters.Input.ColumnHeading;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -476,7 +480,7 @@ function removeAllClasses() {
     }
 }
 function getColumnNumber(title) { 
-    let arrHeadings = table.querySelectorAll("thead th a");
+    let arrHeadings = table.querySelectorAll("thead th");
     let colNo = 0;
     for (let i = 0; i < arrHeadings.length; i++) {
         if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
@@ -494,6 +498,7 @@ let options = {
     characterDataOldValue: true,
 },
 observer = new MutationObserver(styleRows);
+styleRows();
 observer.observe(table, options);
 ```
 
@@ -589,7 +594,7 @@ How to style the cells of a link column
    3. DataGridClass
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/* Stadium Script Version 1.5 */
+/* Stadium Script Version 1.6 */
 let cellclassname = ~.Parameters.Input.CellClass;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
@@ -608,6 +613,7 @@ let options = {
     childList: true,
     subtree: true,
 }, observer = new MutationObserver(attachStyle);
+attachStyle();
 observer.observe(table, options);
 
 function attachStyle() {
@@ -619,7 +625,7 @@ function attachStyle() {
     }
 }
 function getColumnNumber(title) { 
-    let arrHeadings = table.querySelectorAll("thead th a");
+    let arrHeadings = table.querySelectorAll("thead th");
     let colNo = 0;
     for (let i = 0; i < arrHeadings.length; i++) {
         if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
