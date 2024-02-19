@@ -594,7 +594,7 @@ How to style the cells of a link column
    3. DataGridClass
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/* Stadium Script Version 1.6 */
+/* Stadium Script Version 1.6 https://github.com/stadium-software/conditional-datagrid-styling */
 let cellclassname = ~.Parameters.Input.CellClass;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
 let dg = document.querySelectorAll(dgClassName);
