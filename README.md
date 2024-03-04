@@ -323,8 +323,8 @@ observer.observe(table, options);
 1. Add a new type by clicking the *Type* button in the top toolbar of the Stadium Designer
 2. Name the type "Conditions"
 3. Add two properties to the type as per the table below
-   1. class: The name of teh CSS class that must be attached to the item when the conditions are met
-   2. conditions; A list of conditions that must all be met
+   1. class: The name of the CSS class that must be attached to the item when the conditions are met
+   2. conditions: A list of conditions that must all be met
 
 ![Conditions-Type](https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/19bc9b6c-6d2e-43e3-8865-219a01409000)
 
