@@ -2,7 +2,7 @@
 
 Style datagrid rows or cells according to the values found in cells. The sample supports text, date, number and boolean columns. 
 
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/29c6ebac-d787-4d91-85d4-f257aaff04ea
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
 ## Version
 2.0 - this version contains significant changes
