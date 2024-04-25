@@ -12,8 +12,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 1. Consolidated scripts for all data types
 2. Converted use of headers to DataGrid Columns Definition
 3. Removed Link script (replaced by column classes property)
-4. Changed conditions type
-5. 
+4. Changed conditions type 
 
 ## Contents
 
