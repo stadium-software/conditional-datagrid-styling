@@ -1,8 +1,8 @@
 # Conditional Datagrid Styling
 
-A sample that shows how to style datagrid rows or cells according to the values found in cells. The sample supports text, date, number and link columns. 
+Style datagrid rows or cells according to the values found in cells. The sample supports text, date, number and boolean columns. 
 
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/11af2f28-5fbe-46f1-9a47-2161984bf4ac
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/29c6ebac-d787-4d91-85d4-f257aaff04ea
 
 ## Version
 2.0 - this version contains significant changes
