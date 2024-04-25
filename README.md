@@ -142,40 +142,24 @@ function pass(value, conds, type) {
         }
         if (type.toLowerCase() == 'number' || type.toLowerCase() == 'date') {
             if (cond == "==") {
-                if ((value1 == value2) == false) {
-                    passed = false;
-                }
+                if ((value1 == value2) == false) passed = false;
             } else if (cond == "!=") {
-                if ((value1 != value2) == false) {
-                    passed = false;
-                }
+                if ((value1 != value2) == false) passed = false;
             } else if (cond == ">=") {
-                if ((value1 >= value2) == false) {
-                    passed = false;
-                }
+                if ((value1 >= value2) == false) passed = false;
             } else if (cond == "<=") {
-                if ((value1 <= value2) == false) {
-                    passed = false;
-                }
+                if ((value1 <= value2) == false) passed = false;
             } else if (cond == "<") {
-                if ((value1 < value2) == false) {
-                    passed = false;
-                }
+                if ((value1 < value2) == false) passed = false;
             } else if (cond == ">") {
-                if ((value1 > value2) == false) {
-                    passed = false;
-                }
+                if ((value1 > value2) == false) passed = false;
             }
         } else if (type.toLowerCase() == 'boolean') {
             if (value1.toLowerCase() == 'yes') value1 = true;
             if (value1.toLowerCase() == 'no') value1 = false;
-            if (value1 != value2) {
-                passed = false;
-            }
+            if (value1 != value2) passed = false;
         } else {
-            if (value1 != value2) {
-                passed = false;
-            }
+            if (value1 != value2) passed = false;
         }
     }
     return passed;
