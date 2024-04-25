@@ -4,55 +4,32 @@ A sample that shows how to style datagrid rows or cells according to the values 
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/11af2f28-5fbe-46f1-9a47-2161984bf4ac
 
+## Version
+2.0 - this version contains significant changes
+
 ## Change Log
-1.1 Added a section on how to disable a link using this module
-
-1.2 Enhanced script to include style attributes of attached classes in tr or tr tags directly
-
-1.3 Added link column styler script. Optimised scripts. Styles no longer injected.
-
-1.4 Added logic to detect uniqueness of DataGrid classname
-
-1.5 Amended script to cater for changed DataGrid rendering in Stadium 6.6
-
-1.6 Fixed selectable column bug
-
-## Sample applications
-This repo contains one Stadium 6.7 application
-[ConditionalDGCell.sapz](Stadium6/ConditionalDGCell.sapz?raw=true)
+2.0 all changes:
+1. Consolidated scripts for all data types
+2. Converted use of headers to DataGrid Columns Definition
+3. Removed Link script (replaced by column classes property)
+4. Changed conditions type
+5. 
 
 ## Contents
 
 - [Conditional Datagrid Styling](#conditional-datagrid-styling)
+  - [Version](#version)
   - [Change Log](#change-log)
-  - [Sample applications](#sample-applications)
   - [Contents](#contents)
   - [Application Setup](#application-setup)
   - [Database, Connector and DataGrid](#database-connector-and-datagrid)
-  - [Text Columns](#text-columns)
-    - [Text Column Global Script](#text-column-global-script)
-    - [Text Column Page Setup](#text-column-page-setup)
-    - [Text Column Page.Load Event Handler Setup](#text-column-pageload-event-handler-setup)
-    - [Text Column Stylesheet](#text-column-stylesheet)
-  - [Number Columns](#number-columns)
-    - [Number Column Global Script](#number-column-global-script)
-    - [Number Column Page Setup](#number-column-page-setup)
-    - [Conditions Type](#conditions-type)
-    - [Number Column Page.Load Event Setup](#number-column-pageload-event-setup)
-    - [Number Column Stylesheet](#number-column-stylesheet)
-  - [Date Columns](#date-columns)
-    - [Date Column Global Script](#date-column-global-script)
-    - [Date Column Page Setup](#date-column-page-setup)
-    - [Conditions Type](#conditions-type-1)
-    - [Date Column Page.Load Event Setup](#date-column-pageload-event-setup)
-    - [Date Column Stylesheet](#date-column-stylesheet)
-  - [Link Columns](#link-columns)
-    - [Link Column Global Script](#link-column-global-script)
-    - [Link Column Page Setup](#link-column-page-setup)
-    - [Link Column Page.Load Event Handler Setup](#link-column-pageload-event-handler-setup)
-    - [Link Column Stylesheet](#link-column-stylesheet)
-  - [Disabling Links](#disabling-links)
+  - [Global Script Setup](#global-script-setup)
+  - [Type Setup](#type-setup)
+  - [Page Setup](#page-setup)
+  - [Page.Load Setup](#pageload-setup)
   - [Supported Operators](#supported-operators)
+  - [CSS](#css)
+    - [Styling DataGrids](#styling-datagrids)
 
 ## Application Setup
 Check the *Enable Style Sheet* checkbox in the application properties
@@ -61,23 +38,22 @@ Check the *Enable Style Sheet* checkbox in the application properties
 
 Use the instructions from [this repo](https://github.com/stadium-software/samples-database) to setup the database and DataGrids for this sample
 
-## Text Columns
-
-How to style the cells or row by the text found in a specific column
-
-### Text Column Global Script
-
-1. Create a Global Script and call it "TextColumnsStyler"
+## Global Script Setup
+1. Create a Global Script and name it "ConditionalColumnsStyling"
 2. Add the input parameters below to the script
-   1. ColumnTextValues
-   2. ColumnHeading
-   3. DataGridClass
-   4. StyleRow
+   1. Conditions
+   2. DataGridClass
+   3. IDColumn
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
+4. You can ignore the script error message
 ```javascript
-/* Stadium Script Version 1.6 */
-let columnHeading = ~.Parameters.Input.ColumnHeading;
+/* Stadium Script Version 2.0 - see https://github.com/stadium-software/conditional-datagrid-styling */
+let data = ~.Parameters.Input.Conditions;
 let dgClassName = "." + ~.Parameters.Input.DataGridClass;
+let idColumn = ~.Parameters.Input.IDColumn;
+let scope = this;
+let arrPageName = window.location.pathname.split("/");
+let pageName = arrPageName[arrPageName.length - 1];
 let dg = document.querySelectorAll(dgClassName);
 if (dg.length == 0) {
     dg = document.querySelector(".data-grid-container");
@@ -87,607 +63,303 @@ if (dg.length == 0) {
 } else { 
     dg = dg[0];
 }
+let datagridname = dg.id.replace(`${pageName}_`, "").replace("-container","");
+let dataGridColumns = getColumnDefinition();
+if (!isNumber(idColumn)) {
+    idColumn = dataGridColumns.map(function (e) {return e.name;}).indexOf(idColumn) + 1;
+}
 let table = dg.querySelector("table");
 table.classList.add("datagrid-custom-column-styling");
-let attachtorow = ~.Parameters.Input.StyleRow;
-var cellclassnames = ~.Parameters.Input.ColumnTextValues;
-let columnNumber = getColumnNumber(columnHeading);
+for (let j = 0; j < data.length; j++) {
+    let column = data[j].column;
+    if (!isNumber(column)) {
+        let columnNo = dataGridColumns.map(function (e) {return e.name;}).indexOf(column) + 1;
+        data[j].column = columnNo;
+    }
+}
 let classes = [];
-for (let i = 0; i < cellclassnames.length; i++) { 
-    classes.push(cellclassnames[i].toLowerCase().replace(" ", "_"));
+for (let j = 0; j < data.length; j++) { 
+    let c = data[j].cases;
+    for (let i = 0; i < c.length; i++) { 
+        if (getElementIndex(classes, c[i].class) == -1) classes.push(c[i].class);
+    }
 }
 let selectorsList = '.' + classes.join(",.");
+
+let options = {
+    characterData: true,
+    childList: true,
+    subtree: true,
+},
+observer = new MutationObserver(styleRows);
+styleRows();
+observer.observe(table, options);
 
 function styleRows() {
     observer.disconnect();
     removeAllClasses();
-    let arrTableCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ")");
-    for (let i = 0; i < arrTableCells.length; i++) {
-        let cell = arrTableCells[i];
-        if (cell) {
-            let cellText = cell.textContent.toLowerCase().replace(" ","_");
-            attachClass(cell, cellText);
+    let arrIDCells = table.querySelectorAll("tbody tr td:nth-child(" + idColumn + ")");
+    for (let j = 0; j < arrIDCells.length; j++) {
+        let row = arrIDCells[j].closest("tr");
+        let IDValue = Array.prototype.reduce.call(arrIDCells[j].childNodes, function(a, b) { return a + (b.nodeType === 3 ? b.textContent : ''); }, '');
+        let rowData = getElementFromObjects(scope[`${datagridname}Data`], convertToNumber(IDValue), dataGridColumns[idColumn - 1].name);
+        for (let k = 0; k < data.length; k++) {
+            let colValue = rowData[dataGridColumns[data[k].column - 1].name];
+            let type = data[k].type;
+            let cases = data[k].cases;
+            for (let m = 0; m < cases.length; m++) {
+                let cellclass = cases[m].class;
+                let conditions = cases[m].conditions;
+                if (pass(colValue, conditions, type)) {
+                    row.cells[data[k].column - 1].classList.add(cellclass);
+                }
+            }
         }
     }
     observer.observe(table, options);
 }
-function attachClass(td, classname) { 
-    if (classname) {
-        let tr = td.closest("tr");
-        if (attachtorow) {
-            let cells = tr.cells;
-            for (let i = 0; i < cells.length; i++) {
-                cells[i].classList.add(classname);
+function getColumnDefinition() {
+    let colDefs = scope[`${datagridname}ColumnDefinitions`];
+    if (scope[`${datagridname}DataGridHasSelectableData`]) {
+        colDefs.unshift({name:"RowSelector", headerText: "RowSelector"});
+    }
+    return colDefs;
+}
+function getElementFromObjects(haystack, needle, column) {
+    return haystack.find(obj => {return obj[column] == needle;});
+}
+function pass(value, conds, type) { 
+    let passed = true;
+    for (let i = 0; i < conds.length; i++) {
+        let cond = "", arrCond, value2 = "";
+        if (typeof conds[i] == 'string') {
+            arrCond = conds[i].match(/==|>=|<=|>|<|!=/g);
+            if (arrCond) cond = arrCond[0];
+            value2 = conds[i].replace(cond, "");
+        }
+        let value1 = convertToNumber(value);
+        if (type.toLowerCase() == 'date') {
+            value1 = new Date(value1);
+            value2 = new Date(value2);
+        }
+        if (type.toLowerCase() == 'number' || type.toLowerCase() == 'date') {
+            if (cond == "==") {
+                if ((value1 == value2) == false) {
+                    passed = false;
+                }
+            } else if (cond == "!=") {
+                if ((value1 != value2) == false) {
+                    passed = false;
+                }
+            } else if (cond == ">=") {
+                if ((value1 >= value2) == false) {
+                    passed = false;
+                }
+            } else if (cond == "<=") {
+                if ((value1 <= value2) == false) {
+                    passed = false;
+                }
+            } else if (cond == "<") {
+                if ((value1 < value2) == false) {
+                    passed = false;
+                }
+            } else if (cond == ">") {
+                if ((value1 > value2) == false) {
+                    passed = false;
+                }
+            }
+        } else if (type.toLowerCase() == 'boolean') {
+            if (value1.toLowerCase() == 'yes') value1 = true;
+            if (value1.toLowerCase() == 'no') value1 = false;
+            if (value1 != value2) {
+                passed = false;
             }
         } else {
-            td.classList.add(classname);
+            if (value1 != value2) {
+                passed = false;
+            }
         }
     }
+    return passed;
 }
 function removeAllClasses() { 
-    let arrClassCells = table.querySelectorAll(selectorsList);
+    let arrClassCells = table.querySelectorAll(":is(" + selectorsList + ")");
     for (let i = 0; i < arrClassCells.length; i++) { 
-        let ob = arrClassCells[i];
-        for (let i = 0; i < classes.length; i++) { 
-            ob.classList.remove(classes[i]);
+        for (let j = 0; j < classes.length; j++) {
+            arrClassCells[i].classList.remove(classes[j]);
         }
     }
 }
-function getColumnNumber(title) { 
-    let arrHeadings = table.querySelectorAll("thead th");
-    let colNo = 0;
-    for (let i = 0; i < arrHeadings.length; i++) {
-        if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
-            colNo = i + 1;
-        }
-    }
-    return colNo;
+function isNumber(str) {
+    if (typeof str == "number") return true;
+    return !isNaN(str) && !isNaN(parseFloat(str));
 }
-
-let options = {
-    characterData: true,
-    attributes: false,
-    childList: true,
-    subtree: true,
-    characterDataOldValue: true,
-},
-observer = new MutationObserver(styleRows);
-styleRows();
-observer.observe(table, options);
+function convertToNumber(val) {
+    if (!isNumber(val)) {
+        let no;
+        if (typeof val == "string") no = val.replace(/ /g,"");
+        if (isNumber(no)) return Number(no);
+    } else {
+        val = Number(val);
+    }
+    return val;
+}
+function getElementIndex(haystack, needle) {
+    return haystack.indexOf(needle);
+}
 ```
 
-### Text Column Page Setup
+## Type Setup
+1. Add a type called "ConditionalColumn" to the types collection in the Stadium Application Explorer
+2. Add the following properties to the type
+   1. column (Any)
+   2. type (Any)
+   3. cases (List)
+      1. Item (Object)
+         1. class (Any)
+         2. conditions (List)
+            1. Item (Any)
 
-1. Drag a *DataGrid* control to the page (if you don't already have one)
-2. Add a class to uniquely identify this DataGrid *Classes* property (e.g. watched)
-3. NOTE: Multiple DataGrids on a page may not have the same class assigned
+![Type Setup](images/Conditions-Type.png)
 
-### Text Column Page.Load Event Handler Setup
+## Page Setup
+1. Add a *DataGrid* control to the page
+2. Add a class to uniquely identify the *DataGrid* control to the control classes property (e.g. conditional-display)
 
-1. Drag a *List* action into the script
-2. Leave the *Item Type* property of the List as "Any"
-3. Open the *Items Editor* on the List *Value* property
-4. Add the text values you want to use to style the cell or row
+![Page Setup](images/PageSetup.png)
 
-![Text Column List Values](images/TextColumnListValues.png)
+## Page.Load Setup
+1. Drag a *List* action into the event handler and call it "ConditionsList"
+2. Assign the *ConditionalColumn* type to the *List* action
+3. Define the columns to analyse
+   1. *column*: the column name as defined in the *Column* property of the *DataGrid* or the column number
+![](images/ColumnPropertyName.png) 
+   2. *type*: the data type of the column for which you wish to analyse the data. The following are supported
+      1. number
+      2. date
+      3. text
+      4. boolean
+   3. *cases*: a class and a list of conditions
+      1. *class*: the name of the CSS class you wish to attach to cells that match all of the conditions
+      2. *conditions*: a list of conditions to evaluate using the [supported operators](#supported-operators). Using unsupported operators will cause the condition to fail. 
+         1. Number conditions example: ">=8","<=11" (numbers from 8-11 match this condition)
+         2. Date conditions example (note the date format and NO quotes around the date): "<2023-01-01" (dates before Jan first, 2023 match this condition)
+         3. Text conditions example: For text no operator needs to be supplied. All supplied words will be checked using the == condition. Text input is case sensitive
+         4. Boolean conditions example: For boolean columns the displayed valyes are 'Yes' and 'No', but the underlying values are 'true' and 'false'
+1. Populate the *DataGrid* control with data by dragging on a query and assigning it using a *SetValue* (see [this repo](https://github.com/stadium-software/samples-database))
 
-5. Drag the *TextColumnsStyler* script under the list
-6. Provide the input parameters for the script
-   1. DataGridClass: The classname you assigned to your DataGrid
-   2. ColumnHeading: The heading of the column that contains the text values
-   3. StyleRow: Enter *true* if you want the entire row to be styled. By default only the cell is styled
-   4. ColumnTextValues: Select the List of text values you just created from the dropdown
-7. Populate the DataGrid with data
+Fields Definition Example
+```json
+= [{
+	"column": "NoOfChildren",
+	"type": "Number",
+	"cases": [{
+		"class": "orange-bg",
+		"conditions": [">8","<11"]
+	}]
+},{
+    "column": "NoOfChildren",
+    "type": "Number",
+    "cases": [{
+        "class": "orange-bg",
+        "conditions": [">0","<3"]
+    }]
+},{
+	"column": "StartDate",
+	"type": "date",
+	"cases": [{
+		"class": "orange-bg",
+		"conditions": ["<2023-01-01"]
+	}]
+},{
+	"column": "Subscription",
+	"type": "text",
+	"cases": [{
+		"class": "no_data",
+		"conditions": ["No data"]
+	}]
+},{
+    "column": "Subscription",
+    "type": "text",
+    "cases": [{
+        "class": "subscribed",
+        "conditions": ["Subscribed"]
+    }]
+},{
+    "column": "Subscription",
+    "type": "text",
+    "cases": [{
+        "class": "unsubscribed",
+        "conditions": ["Unsubscribed"]
+    }]
+},{
+    "column": "Healthy",
+    "type": "text",
+    "cases": [{
+        "class": "healthy",
+        "conditions": [true]
+    }]
+}]
+```
+5. Drag the "ConditionalColumnsStyling" global script below the *List*
+6. Enter parameters for the script
+   1. DataGridClass: The unique classname you assigned to the DataGrid above (e.g. conditional-display)
+   3. Conditions: Select the List containing the conditions defined above from the dropdown
+   4. IDColumn: The name of the column that contains the identifyer for this dataset as defined in the DataGrid Column property or the column number
 
-![](images/TextScriptParameters.png)
+![Script Parameters Example](images/ScriptParameters.png)
 
-### Text Column Stylesheet
+## Supported Operators
 
-Each text value you wish to find requires a corresponding CSS class in the Stylesheet. When the script above runs, it matches the class name to the cell containing the corresponding text value. 
+|| Operator | Description |
+||--------|----------|
+|1.| == | equals |
+|2.| != | not equal |
+|3.| > | greater than |
+|4.| < | less than |
+|5.| >= | greater than or equal to |
+|6.| <= | less than or equal to |
 
-Rules
+## CSS
+When the script runs, it adds CSS the classes defined in the Conditions List above to the table cell (td) when all related conditions evaluate to true. See more CSS examples in the StyleSheet of the sample application 
 
-1. All CSS classnames must be lower case
-2. Replace spaces in text values with underscores
+### Styling DataGrids
+1. Select the *StyleSheet* in the *Application Explorer*
+2. Write CSS
 
-Example:
+**Styling the evaluated cells**
 ```css
-.no_data {
-    background-color: rgba(214, 170, 86, .5);
-}
 .subscribed {
-    background-color: rgba(0, 77, 54, .5);
+    background-color: rgba(12, 140, 200, .5);
     color: white;
 }
-.unsubscribed {
-    background-color: rgba(247, 42, 99, .5);
-    color: white;
-}
-```
-
-## Number Columns 
-
-How to style the cells or row by the number values found in a specific column
-
-### Number Column Global Script
-
-1. Create a Global Script and call it "NumberColumnsStyler"
-2. Add the input parameters below to the script
-   1. ColumnHeading
-   2. Conditions
-   3. DataGridClass
-   4. StyleRow
-3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
-```javascript
-/* Stadium Script Version 1.6 */
-let columnHeading = ~.Parameters.Input.ColumnHeading;
-let dgClassName = "." + ~.Parameters.Input.DataGridClass;
-let dg = document.querySelectorAll(dgClassName);
-if (dg.length == 0) {
-    dg = document.querySelector(".data-grid-container");
-} else if (dg.length > 1) {
-    console.error("The class '" + dgClassName + "' is assigned to multiple DataGrids. DataGrids using this script must have unique classnames");
-    return false;
-} else { 
-    dg = dg[0];
-}
-let table = dg.querySelector("table");
-table.classList.add("datagrid-custom-column-styling");
-let data = ~.Parameters.Input.Conditions;
-let attachtorow = ~.Parameters.Input.StyleRow;
-let columnNumber = getColumnNumber(columnHeading);
-let classes = [];
-for (let i = 0; i < data.length; i++) { 
-    classes.push(data[i].class);
-}
-let selectorsList = '.' + classes.join(",.");
-
-function styleRows() {
-    observer.disconnect();
-    removeAllClasses();
-    let arrTableCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ")");
-    for (let i = 0; i < arrTableCells.length; i++) {
-        let cell = arrTableCells[i];
-        if (cell) {
-            for (let i = 0; i < data.length; i++) {
-                if (pass(cell.innerText, data[i].conditions)) {
-                    attachClass(cell, data[i].class);
-                }
-            }
-        }
-    }
-    observer.observe(table, options);
-}
-function attachClass(td, classname) { 
-    let tr = td.closest("tr");
-    if (attachtorow) {
-        let cells = tr.cells;
-        for (let i = 0; i < cells.length; i++) {
-            cells[i].classList.add(classname);
-        }
-    } else { 
-        td.classList.add(classname);
-    }
-}
-function pass(celltext, conds) { 
-    celltext = parseFloat(celltext);
-    let conditionsString = "";
-    let and = "";
-    for (let i = 0; i < conds.length; i++) {
-        conditionsString += and + celltext + conds[i];
-        and = " && ";
-    }
-    let fn = new Function("return " + conditionsString);
-    return fn();
-}
-function removeAllClasses() { 
-    let arrClassCells = table.querySelectorAll(selectorsList);
-    for (let i = 0; i < arrClassCells.length; i++) { 
-        let ob = arrClassCells[i];
-        for (let i = 0; i < data.length; i++) { 
-            ob.classList.remove(data[i].class);
-        }
-    }
-}
-function getColumnNumber(title) { 
-    let arrHeadings = table.querySelectorAll("thead th");
-    let colNo = 0;
-    for (let i = 0; i < arrHeadings.length; i++) {
-        if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
-            colNo = i + 1;
-        }
-    }
-    return colNo;
-}
-
-let options = {
-    characterData: true,
-    attributes: false,
-    childList: true,
-    subtree: true,
-    characterDataOldValue: true,
-},
-observer = new MutationObserver(styleRows);
-styleRows();
-observer.observe(table, options);
-```
-
-### Number Column Page Setup
-
-1. Drag a *DataGrid* control to the page (if you don't already have one)
-2. Add a class to uniquely identify the DataGrid *Classes* property (e.g. watched)
-3. NOTE: Multiple DataGrids on a page may not have the same class assigned
-
-### Conditions Type
-
-1. Add a new type by clicking the *Type* button in the top toolbar of the Stadium Designer
-2. Name the type "Conditions"
-3. Add two properties to the type as per the table below
-   1. class: The name of the CSS class that must be attached to the item when the conditions are met
-   2. conditions: A list of conditions that must all be met
-
-![Conditions-Type](https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/19bc9b6c-6d2e-43e3-8865-219a01409000)
-
-### Number Column Page.Load Event Setup
-
-1. Drag a *List* action into the event handler
-2. Set the *Item Type* property of the List to *Types.Conditions*
-3. Open the *Items Editor* on the *Item Type* *Value* property
-   1. Add the name of the CSS class for this set of conditions (e.g. black-bg)
-   2. Open the *Items Editor* on the *conditions* property
-      1. Enter the first condition (e.g. "> 4" for greater than four)
-      2. Enter a second condition (e.g. "==0" equal to zero)
-      3. Check out the [supported Javascript comparison operators](#supported-operators)
-
-*Conditions Value Property Example*
-```json
-= [{
-	"class": "orange-bg",
-	"conditions": ["<2",">0"]
-},{
-	"class": "yellow-bg",
-	"conditions": ["==2"]
-},{
-	"class": "black-bg",
-	"conditions": [">2","<8"]
-},{
-	"class": "green-bg",
-	"conditions": ["> 7"]
-},{
-	"class": "link-col",
-	"conditions": ["==0"]
-}]
-```
-
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/9b83768b-94ba-4e01-81b3-9303292fe314
-
-4. Drag the *NumberColumnsStyler* script under the List
-5. Provide the input parameters for the script
-   1. DataGridClass: The classname you assigned to your DataGrid
-   2. Column Heading: The heading of the column that contains the text values
-   3. Conditions: The list of conditions 
-   4. StyleRow: Enter *true* if you want the entire row to be styled. By default only the cell is styled
-6. Populate the DataGrid with data
-
-### Number Column Stylesheet
-
-For each class you added in your conditions list, create a corresponding css class in your stylesheet
-
-Examples
-```css
-.orange-bg {
-    background-color: rgba(152, 237, 107, .5);
-    color: black;
-}
-.grey-bg {
-    background-color: rgba(209, 214, 86, .5);
-}
-.black-bg {
+.healthy {
     background-color: rgba(0, 77, 54, .5);
     color: white;
 }
 .green-bg {
-    background-color: rgba(86, 214, 112, .5);
-    color: black;
-}
-.yellow-bg {
-    background-color: rgba(247, 223, 99, .5);
-    color: #333;
-}
-```
-
-## Date Columns 
-
-How to style the cells or row by the date values found in a specific column
-
-### Date Column Global Script
-
-1. Create a Global Script and call it "DateColumnsStyler"
-2. Add the input parameters below to the script
-   1. ColumnHeading
-   2. Conditions
-   3. DataGridClass
-   4. StyleRow
-3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
-```javascript
-/* Stadium Script Version 1.6 */
-let columnHeading = ~.Parameters.Input.ColumnHeading;
-let dgClassName = "." + ~.Parameters.Input.DataGridClass;
-let dg = document.querySelectorAll(dgClassName);
-if (dg.length == 0) {
-    dg = document.querySelector(".data-grid-container");
-} else if (dg.length > 1) {
-    console.error("The class '" + dgClassName + "' is assigned to multiple DataGrids. DataGrids using this script must have unique classnames");
-    return false;
-} else { 
-    dg = dg[0];
-}
-let table = dg.querySelector("table");
-table.classList.add("datagrid-custom-column-styling");
-let data = ~.Parameters.Input.Conditions;
-let attachtorow = ~.Parameters.Input.StyleRow;
-let columnNumber = getColumnNumber(columnHeading);
-let classes = [];
-for (let i = 0; i < data.length; i++) { 
-    classes.push(data[i].class);
-}
-let selectorsList = '.' + classes.join(",.");
-
-function styleRows() {
-    observer.disconnect();
-    removeAllClasses();
-    let arrTableCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ")");
-    for (let i = 0; i < arrTableCells.length; i++) {
-        let cell = arrTableCells[i];
-        if (cell) {
-            for (let i = 0; i < data.length; i++) {
-                if (pass(cell.innerText, data[i].conditions)) {
-                    attachClass(cell, data[i].class);
-                }
-            }
-        }
-    }
-    observer.observe(table, options);
-}
-function attachClass(td, classname) { 
-    let tr = td.closest("tr");
-    if (attachtorow) {
-        let cells = tr.cells;
-        for (let i = 0; i < cells.length; i++) {
-            cells[i].classList.add(classname);
-        }
-    } else { 
-        td.classList.add(classname);
-    }
-}
-function pass(celltext, conds) { 
-    let conditionsString = "";
-    let and = "";
-    for (let i = 0; i < conds.length; i++) {
-        conditionsString += and + "'" + celltext + "'" + conds[i];
-        and = " && ";
-    }
-    let fn = new Function("return " + conditionsString);
-    return fn();
-}
-function removeAllClasses() { 
-    let arrClassCells = table.querySelectorAll(selectorsList);
-    for (let i = 0; i < arrClassCells.length; i++) { 
-        let ob = arrClassCells[i];
-        for (let i = 0; i < data.length; i++) { 
-            ob.classList.remove(data[i].class);
-        }
-    }
-}
-function getColumnNumber(title) { 
-    let arrHeadings = table.querySelectorAll("thead th");
-    let colNo = 0;
-    for (let i = 0; i < arrHeadings.length; i++) {
-        if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
-            colNo = i + 1;
-        }
-    }
-    return colNo;
-}
-
-let options = {
-    characterData: true,
-    attributes: false,
-    childList: true,
-    subtree: true,
-    characterDataOldValue: true,
-},
-observer = new MutationObserver(styleRows);
-styleRows();
-observer.observe(table, options);
-```
-
-### Date Column Page Setup
-
-1. Drag a *DataGrid* control to the page (if you don't already have one)
-2. Add a class to uniquely identify the DataGrid *Classes* property (e.g. watched)
-3. NOTE: Multiple DataGrids on a page may not have the same class assigned
-
-### Conditions Type
-
-1. Add a new type by clicking the *Type* button in the top toolbar of the Stadium Designer
-2. Name the type "Conditions"
-3. Add two properties to the type as per the table below
-   1. class: The name of teh CSS class that must be attached to the item when the conditions are met
-   2. conditions; A list of conditions that must all be met
-
-![Conditions-Type](https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/19bc9b6c-6d2e-43e3-8865-219a01409000)
-
-### Date Column Page.Load Event Setup
-
-1. Drag a *List* action into the event handler
-2. Set the *Item Type* property of the List to *Types.Conditions*
-3. Open the *Items Editor* on the *Item Type* *Value* property
-   1. Add the name of the CSS class for this set of conditions (e.g. black-bg)
-   2. Open the *Items Editor* on the *conditions* property
-      1. Enter the first condition (e.g. ">='2023/01/01'" for greater or equals to Jan first, 2023)
-      2. Enter a second condition (e.g. "<'2022/10/01'" smaller than Oct first, 2022)
-      3. All dates must be enclosed by single quotes (!)
-      4. Check out the [supported Javascript comparison operators](#supported-operators)
-
-*Conditions Value Property Example*
-```json
-= [{
-	"class": "orange-bg",
-	"conditions": ["<2",">0"]
-},{
-	"class": "yellow-bg",
-	"conditions": ["==2"]
-},{
-	"class": "black-bg",
-	"conditions": [">2","<8"]
-},{
-	"class": "green-bg",
-	"conditions": ["> 7"]
-}]
-```
-
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/c53c6b7e-c9f6-40dd-9a0a-b6d97d56c3e4
-
-4. Drag the *DateColumnsStyler* script under the List
-5. Provide the input parameters for the script
-   1. DataGridClass: The classname you assigned to your DataGrid
-   2. Column Heading: The heading of the column that contains the text values
-   3. Conditions: The list of conditions 
-   4. StyleRow: Enter *true* if you want the entire row to be styled. By default only the cell is styled
-6. Populate the DataGrid with data
-
-### Date Column Stylesheet
-
-For each class you added in your conditions list, create a corresponding css class in your stylesheet
-
-Examples
-```css
-.orange-bg {
     background-color: rgba(152, 237, 107, .5);
     color: black;
 }
-.black-bg {
-    background-color: rgba(0, 77, 54, .5);
-    color: white;
-}
-.green-bg {
-    background-color: rgba(86, 214, 112, .5);
-    color: black;
-}
-.yellow-bg {
-    background-color: rgba(247, 223, 99, .5);
-    color: #333;
-}
 ```
 
-## Link Columns
-
-How to style the cells of a link column
-
-### Link Column Global Script
-
-1. Create a Global Script and call it "LinkColumnsStyler"
-2. Add the input parameters below to the script
-   1. CellClass
-   2. ColumnHeading
-   3. DataGridClass
-3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
-```javascript
-/* Stadium Script Version 1.6 https://github.com/stadium-software/conditional-datagrid-styling */
-let cellclassname = ~.Parameters.Input.CellClass;
-let dgClassName = "." + ~.Parameters.Input.DataGridClass;
-let dg = document.querySelectorAll(dgClassName);
-if (dg.length == 0) {
-    dg = document.querySelector(".data-grid-container");
-} else if (dg.length > 1) {
-    console.error("The class '" + dgClassName + "' is assigned to multiple DataGrids. DataGrids using this script must have unique classnames");
-    return false;
-} else { 
-    dg = dg[0];
-}
-let table = dg.querySelector("table");
-let columnHeading = ~.Parameters.Input.ColumnHeading;
-let columnNumber = getColumnNumber(columnHeading);
-let options = {
-    childList: true,
-    subtree: true,
-}, observer = new MutationObserver(attachStyle);
-attachStyle();
-observer.observe(table, options);
-
-function attachStyle() {
-    let arrDGCells = table.querySelectorAll("tbody tr td:nth-child(" + columnNumber + ") button");
-    for (let i = 0; i < arrDGCells.length; i++) {
-        console.log(arrDGCells[i].innerHTML);
-        arrDGCells[i].setAttribute("title", columnHeading);
-        arrDGCells[i].classList.add(cellclassname);
-    }
-}
-function getColumnNumber(title) { 
-    let arrHeadings = table.querySelectorAll("thead th");
-    let colNo = 0;
-    for (let i = 0; i < arrHeadings.length; i++) {
-        if (arrHeadings[i].innerText.toLowerCase().replaceAll(" ", "") == title.toLowerCase().replaceAll(" ", "")) { 
-            colNo = i + 1;
-        }
-    }
-    return colNo;
-}
-```
-
-### Link Column Page Setup
-
-1. Drag a *DataGrid* control to the page (if you don't already have one)
-2. Add a class to uniquely identify the DataGrid *Classes* property (e.g. watched)
-3. NOTE: Multiple DataGrids on a page may not have the same class assigned
-
-### Link Column Page.Load Event Handler Setup
-
-1. For each link column you want to style, drag a *LinkColumnsStyler* script into the script
-6. Provide the input parameters for the script
-   1. DataGridClass: The classname you assigned to your DataGrid
-   2. Column Heading: The heading of the column that contains the text values
-   4. CellClass: The CSS class to be attached to the link element in the column
-7. Populate the DataGrid with data
-
-### Link Column Stylesheet
-
-Each class specified in a CellClass input parameter requires a matching CSS class in the Stylesheet. To display images in a cell, drag the images into the EmbeddedFiles of the application and reference them in the stylesheet as shown below
-
-Example:
+**Styling the row**
 ```css
-.edit-image,
-.edit-image:hover {
-    background-image: url('/src/assets/EmbeddedFiles/edit.png');
-    background-repeat: no-repeat;
-    background-size: 20px;
-    background-position: left center;
-    height: 20px;
-    width: 20px;
-    font-size: 0;
-}
-
-.delete-image,
-.delete-image:hover {
-    background-image: url('/src/assets/EmbeddedFiles/delete.png');
-    background-repeat: no-repeat;
-    background-size: 20px;
-    background-position: left center;
-    height: 20px;
-    width: 20px;
-    font-size: 0;
+tr:has(.no_data) td {
+    background-color: rgba(12, 140, 200, .5);
 }
 ```
 
-## Disabling Links
-Using some CSS, you can also use this module to change the content of other cells in the row. Like this you can, for example, remove a link from another cell in the row. This method does **NOT** remove access to the page a hidden link pointed to. Users who know how can still run any scripts the link would have run or navigate to any page the link pointed to. 
+**Styling other cells in the row**
+Styling the first cell in the row where a class called "no_data" was applied to any cell
+```css
+tr:has(.no_data) td:nth-child(1) {
+    background-color: rgba(12, 140, 200, .5);
+}
+```
 
-**Using CSS to hide a link**
-1. Create your conditions as above
-2. Use any of CSS below to manipulate the link column 
-
-The examples assume the class you attach is called *no_data* and the link is in the **first column** (td:nth-child(1)) of your DataGrid. 
+**Manipulating other cells in a row**
+The examples assume one of the cells has the class *no_data* and the **first column** has a **Click** event handler (td:nth-child(1))
 
 Making a link look disabled
 ```css
@@ -715,14 +387,4 @@ tr:has(.no_data) td:nth-child(1):after {
 }
 ```
 
-## Supported Operators
-
-| Operator | Description |
-|--------|----------|
-| == | equals |
-| != | not equal |
-| > | greater than |
-| < | less than |
-| >= | greater than or equal to |
-| <= | less than or equal to |
 
