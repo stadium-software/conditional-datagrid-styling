@@ -44,7 +44,6 @@ Use the instructions from [this repo](https://github.com/stadium-software/sample
    2. DataGridClass
    3. IDColumn
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
-4. You can ignore the script error message
 ```javascript
 /* Stadium Script Version 2.0 - see https://github.com/stadium-software/conditional-datagrid-styling */
 let data = ~.Parameters.Input.Conditions;
