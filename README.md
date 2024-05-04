@@ -214,8 +214,6 @@ function getElementIndex(haystack, needle) {
 1. Add a *DataGrid* control to the page
 2. Add a class to uniquely identify the *DataGrid* control to the control classes property (e.g. conditional-display)
 
-![Page Setup](images/PageSetup.png)
-
 ## Page.Load Setup
 1. Drag a *List* action into the event handler and call it "ConditionsList"
 2. Assign the *ConditionalColumn* type to the *List* action
