@@ -5,7 +5,7 @@ Style datagrid rows or cells according to the values found in cells. The sample 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
 ## Version
-2.0 - this version contains significant changes
+2.1 - this version contains significant changes
 
 ## Change Log
 2.0 all changes:
@@ -13,6 +13,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 2. Converted use of headers to DataGrid Columns Definition
 3. Removed Link script (replaced by column classes property)
 4. Changed conditions type 
+
+2.1 Fixed "control in template" bug
 
 ## Contents
 
@@ -45,23 +47,27 @@ Use the instructions from [this repo](https://github.com/stadium-software/sample
    3. IDColumn
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/* Stadium Script Version 2.0 - see https://github.com/stadium-software/conditional-datagrid-styling */
+/* Stadium Script Version 2.1 - see https://github.com/stadium-software/conditional-datagrid-styling */
 let data = ~.Parameters.Input.Conditions;
-let dgClassName = "." + ~.Parameters.Input.DataGridClass;
+let classInput = ~.Parameters.Input.DataGridClass;
+if (typeof classInput == "undefined") {
+    console.error("The DataGridClass parameter is required");
+    return false;
+} 
+let dgClassName = "." + classInput;
 let idColumn = ~.Parameters.Input.IDColumn;
 let scope = this;
-let arrPageName = window.location.pathname.split("/");
-let pageName = arrPageName[arrPageName.length - 1];
 let dg = document.querySelectorAll(dgClassName);
 if (dg.length == 0) {
-    dg = document.querySelector(".data-grid-container");
+    console.error("The class '" + dgClassName + "' is not assigned to any DataGrid");
+    return false;
 } else if (dg.length > 1) {
     console.error("The class '" + dgClassName + "' is assigned to multiple DataGrids. DataGrids using this script must have unique classnames");
     return false;
 } else { 
     dg = dg[0];
 }
-let datagridname = dg.id.replace(`${pageName}_`, "").replace("-container","");
+let datagridname = dg.id.split("_")[1].replace("-container","");
 let dataGridColumns = getColumnDefinition();
 if (!isNumber(idColumn)) {
     idColumn = dataGridColumns.map(function (e) {return e.name;}).indexOf(idColumn) + 1;
