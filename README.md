@@ -297,14 +297,15 @@ Fields Definition Example
 
 ## Supported Operators
 
-| | Operator | Description |
-| |--------|----------|
-|1.| == | equals |
-|2.| != | not equal |
-|3.| > | greater than |
-|4.| < | less than |
-|5.| >= | greater than or equal to |
-|6.| <= | less than or equal to |
+<table>
+<tr><th></th><th>Operator</th><th>Description</th></tr>
+<tr><td>1.</td><td>==</td><td>equals</td></tr>
+<tr><td>2.</td><td>!=</td><td>not equal</td></tr>
+<tr><td>3.</td><td>></td><td>greater than</td></tr>
+<tr><td>4.</td><td><</td><td>ess than </td></tr>
+<tr><td>5.</td><td>>=</td><td>greater than or equal to</td></tr>
+<tr><td>6.</td><td><=</td><td>less than or equal to</td></tr>
+</table>
 
 ## CSS
 When the script runs, it adds CSS the classes defined in the Conditions List above to the table cell (td) when all related conditions evaluate to true. See more CSS examples in the StyleSheet of the sample application 
