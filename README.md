@@ -297,8 +297,8 @@ Fields Definition Example
 
 ## Supported Operators
 
-|| Operator | Description |
-||--------|----------|
+| | Operator | Description |
+| |--------|----------|
 |1.| == | equals |
 |2.| != | not equal |
 |3.| > | greater than |
