@@ -227,7 +227,7 @@ function getElementIndex(haystack, needle) {
       4. boolean
    3. *cases*: a class and a list of conditions
       1. *class*: the name of the CSS class you wish to attach to cells that match all of the conditions
-      2. *conditions*: a list of conditions to evaluate using the [supported operators](#supported-operators). Using unsupported operators will cause the condition to fail. The condition evaluates to *true* when **all** operators evaluate to *true*
+      2. *conditions*: a list of conditions to evaluate using the [supported operators](#supported-operators). The condition evaluates to *true* when **all** operators evaluate to *true*. Using unsupported operators will cause the condition to fail 
          1. Number conditions example: ">=8","<=11" (numbers from 8-11 match this condition)
          2. Date conditions example (note the date format and NO quotes around the date): "<2023-01-01" (dates before Jan first, 2023 match this condition)
          3. Text conditions example: For text no operator needs to be supplied. All supplied words will be checked using the == condition. Text input is case sensitive
