@@ -16,6 +16,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 2.1 Fixed "control in template" bug
 
+2.1.1 Fixed "ID column is link" bug
+
 ## Contents
 
 - [Conditional Datagrid Styling](#conditional-datagrid-styling)
@@ -47,7 +49,7 @@ Use the instructions from [this repo](https://github.com/stadium-software/sample
    3. IDColumn
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/* Stadium Script Version 2.1 - see https://github.com/stadium-software/conditional-datagrid-styling */
+/* Stadium Script Version 2.1.1 - see https://github.com/stadium-software/conditional-datagrid-styling */
 let data = ~.Parameters.Input.Conditions;
 let classInput = ~.Parameters.Input.DataGridClass;
 if (typeof classInput == "undefined") {
@@ -105,7 +107,10 @@ function styleRows() {
     let arrIDCells = table.querySelectorAll("tbody tr td:nth-child(" + idColumn + ")");
     for (let j = 0; j < arrIDCells.length; j++) {
         let row = arrIDCells[j].closest("tr");
-        let IDValue = Array.prototype.reduce.call(arrIDCells[j].childNodes, function(a, b) { return a + (b.nodeType === 3 ? b.textContent : ''); }, '');
+        let IDcell = arrIDCells[j];
+        if (IDcell.querySelector("button")) IDcell = IDcell.childNodes[0];
+        console.log(arrIDCells[j].childNodes[0].childNodes);
+        let IDValue = Array.prototype.reduce.call(IDcell.childNodes, function(a, b) { return a + (b.nodeType === 3 ? b.textContent : ''); }, '');
         let rowData = getElementFromObjects(scope[`${datagridname}Data`], convertToNumber(IDValue), dataGridColumns[idColumn - 1].name);
         for (let k = 0; k < data.length; k++) {
             let colValue = rowData[dataGridColumns[data[k].column - 1].name];
