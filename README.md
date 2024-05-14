@@ -109,7 +109,6 @@ function styleRows() {
         let row = arrIDCells[j].closest("tr");
         let IDcell = arrIDCells[j];
         if (IDcell.querySelector("button")) IDcell = IDcell.childNodes[0];
-        console.log(arrIDCells[j].childNodes[0].childNodes);
         let IDValue = Array.prototype.reduce.call(IDcell.childNodes, function(a, b) { return a + (b.nodeType === 3 ? b.textContent : ''); }, '');
         let rowData = getElementFromObjects(scope[`${datagridname}Data`], convertToNumber(IDValue), dataGridColumns[idColumn - 1].name);
         for (let k = 0; k < data.length; k++) {
