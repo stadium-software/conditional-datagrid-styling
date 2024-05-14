@@ -5,7 +5,7 @@ Style datagrid rows or cells according to the values found in cells. The sample 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
 ## Version
-2.1 - this version contains significant changes
+2.1
 
 ## Change Log
 2.0 all changes:
