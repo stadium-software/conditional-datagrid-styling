@@ -33,6 +33,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
   - [Supported Operators](#supported-operators)
   - [CSS](#css)
     - [Styling DataGrids](#styling-datagrids)
+  - [Known Issues](#known-issues)
 
 ## Application Setup
 Check the *Enable Style Sheet* checkbox in the application properties
@@ -378,4 +379,5 @@ tr:has(.no_data) td:nth-child(1):after {
 }
 ```
 
-
+## Known Issues
+1. Using an underscore (_) in the page or template name can cause the script to break
