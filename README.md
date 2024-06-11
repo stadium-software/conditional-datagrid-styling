@@ -18,6 +18,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 2.1.1 Fixed "ID column is link" bug
 
+2.1.2 Fixed "Logout error" bug
+
 ## Contents
 
 - [Conditional Datagrid Styling](#conditional-datagrid-styling)
@@ -50,7 +52,7 @@ Use the instructions from [this repo](https://github.com/stadium-software/sample
    3. IDColumn
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/* Stadium Script Version 2.1.1 - see https://github.com/stadium-software/conditional-datagrid-styling */
+/* Stadium Script Version 2.1.2 - see https://github.com/stadium-software/conditional-datagrid-styling */
 let data = ~.Parameters.Input.Conditions;
 let classInput = ~.Parameters.Input.DataGridClass;
 if (typeof classInput == "undefined") {
@@ -112,15 +114,17 @@ function styleRows() {
         if (IDcell.querySelector("button")) IDcell = IDcell.childNodes[0];
         let IDValue = Array.prototype.reduce.call(IDcell.childNodes, function(a, b) { return a + (b.nodeType === 3 ? b.textContent : ''); }, '');
         let rowData = getElementFromObjects(scope[`${datagridname}Data`], convertToNumber(IDValue), dataGridColumns[idColumn - 1].name);
-        for (let k = 0; k < data.length; k++) {
-            let colValue = rowData[dataGridColumns[data[k].column - 1].name];
-            let type = data[k].type;
-            let cases = data[k].cases;
-            for (let m = 0; m < cases.length; m++) {
-                let cellclass = cases[m].class;
-                let conditions = cases[m].conditions;
-                if (pass(colValue, conditions, type)) {
-                    row.cells[data[k].column - 1].classList.add(cellclass);
+        if (rowData) {
+            for (let k = 0; k < data.length; k++) {
+                let colValue = rowData[dataGridColumns[data[k].column - 1].name];
+                let type = data[k].type;
+                let cases = data[k].cases;
+                for (let m = 0; m < cases.length; m++) {
+                    let cellclass = cases[m].class;
+                    let conditions = cases[m].conditions;
+                    if (pass(colValue, conditions, type)) {
+                        row.cells[data[k].column - 1].classList.add(cellclass);
+                    }
                 }
             }
         }
