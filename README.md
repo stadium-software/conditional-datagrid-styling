@@ -5,7 +5,7 @@ Style datagrid rows or cells according to the values found in cells. The sample 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
 ## Version
-2.1
+2.2
 
 ## Change Log
 2.0 all changes:
@@ -19,6 +19,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 2.1.1 Fixed "ID column is link" bug
 
 2.1.2 Fixed "Logout error" bug
+
+2.2 Fixed boolean conditions bug
 
 ## Contents
 
@@ -52,7 +54,7 @@ Use the instructions from [this repo](https://github.com/stadium-software/sample
    3. IDColumn
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/* Stadium Script Version 2.1.2 - see https://github.com/stadium-software/conditional-datagrid-styling */
+/* Stadium Script Version 2.2 - see https://github.com/stadium-software/conditional-datagrid-styling */
 let data = ~.Parameters.Input.Conditions;
 let classInput = ~.Parameters.Input.DataGridClass;
 if (typeof classInput == "undefined") {
@@ -170,9 +172,7 @@ function pass(value, conds, type) {
                 if ((value1 > value2) == false) passed = false;
             }
         } else if (type.toLowerCase() == 'boolean') {
-            if (value1.toLowerCase() == 'yes') value1 = true;
-            if (value1.toLowerCase() == 'no') value1 = false;
-            if (value1 != value2) passed = false;
+            if (value1 != conds[i]) passed = false;
         } else {
             if (value1 != value2) passed = false;
         }
@@ -289,7 +289,7 @@ Fields Definition Example
     }]
 },{
     "column": "Healthy",
-    "type": "text",
+    "type": "boolean",
     "cases": [{
         "class": "healthy",
         "conditions": [true]
