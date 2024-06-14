@@ -64,7 +64,7 @@ if (typeof classInput == "undefined") {
 let dgClassName = "." + classInput;
 let idColumn = ~.Parameters.Input.IDColumn;
 let scope = this;
-let dg = document.querySelectorAll(dgClassName);
+let dg = document.querySelectorAll(".data-grid-container" + dgClassName);
 if (dg.length == 0) {
     console.error("The class '" + dgClassName + "' is not assigned to any DataGrid");
     return false;
