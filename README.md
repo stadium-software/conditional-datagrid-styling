@@ -270,8 +270,8 @@ Fields Definition Example
 	"column": "Subscription",
 	"type": "text",
 	"cases": [{
-		"class": "no_data",
-		"conditions": ["No data"]
+        "class": "no_data",
+        "conditions": ["No data"]
 	},{
         "class": "subscribed",
         "conditions": ["Subscribed"]
