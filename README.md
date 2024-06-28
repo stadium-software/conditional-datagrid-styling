@@ -246,11 +246,11 @@ function getElementIndex(haystack, needle) {
 Fields Definition Example
 ```json
 = [{
-	"column": "NoOfChildren",
-	"type": "Number",
-	"cases": [{
-		"class": "orange-bg",
-		"conditions": [">8","<11"]
+    "column": "NoOfChildren",
+    "type": "Number",
+    "cases": [{
+        "class": "orange-bg",
+        "conditions": [">8","<11"]
 	}]
 },{
     "column": "NoOfChildren",
@@ -260,11 +260,11 @@ Fields Definition Example
         "conditions": [">0","<3"]
     }]
 },{
-	"column": "StartDate",
-	"type": "date",
-	"cases": [{
-		"class": "orange-bg",
-		"conditions": ["<2023-01-01"]
+    "column": "StartDate",
+    "type": "date",
+    "cases": [{
+        "class": "orange-bg",
+        "conditions": ["<2023-01-01"]
 	}]
 },{
     "column": "Subscription",
