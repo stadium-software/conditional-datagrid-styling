@@ -267,11 +267,11 @@ Fields Definition Example
 		"conditions": ["<2023-01-01"]
 	}]
 },{
-	"column": "Subscription",
-	"type": "text",
-	"cases": [{
-        "class": "no_data",
-        "conditions": ["No data"]
+    "column": "Subscription",
+    "type": "text",
+    "cases": [{
+    "class": "no_data",
+    "conditions": ["No data"]
 	},{
         "class": "subscribed",
         "conditions": ["Subscribed"]
