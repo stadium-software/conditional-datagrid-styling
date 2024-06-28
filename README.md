@@ -272,18 +272,10 @@ Fields Definition Example
 	"cases": [{
 		"class": "no_data",
 		"conditions": ["No data"]
-	}]
-},{
-    "column": "Subscription",
-    "type": "text",
-    "cases": [{
+	},{
         "class": "subscribed",
         "conditions": ["Subscribed"]
-    }]
-},{
-    "column": "Subscription",
-    "type": "text",
-    "cases": [{
+    },{
         "class": "unsubscribed",
         "conditions": ["Unsubscribed"]
     }]
