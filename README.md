@@ -272,7 +272,7 @@ Fields Definition Example
     "cases": [{
         "class": "no_data",
         "conditions": ["No data"]
-	},{
+    },{
         "class": "subscribed",
         "conditions": ["Subscribed"]
     },{
