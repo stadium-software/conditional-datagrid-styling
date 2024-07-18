@@ -43,7 +43,6 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 Check the *Enable Style Sheet* checkbox in the application properties
 
 ## Database, Connector and DataGrid
-
 Use the instructions from [this repo](https://github.com/stadium-software/samples-database) to setup the database and DataGrids for this sample
 
 ## Global Script Setup
@@ -241,7 +240,7 @@ function getElementIndex(haystack, needle) {
          2. Date conditions example (note the date format and NO quotes around the date): "<2023-01-01" (dates before Jan first, 2023 match this condition)
          3. Text conditions example: For text no operator needs to be supplied. All supplied words will be checked using the == condition. Text input is case sensitive
          4. Boolean conditions example: For boolean columns the displayed valyes are 'Yes' and 'No', but the underlying values are 'true' and 'false'
-1. Populate the *DataGrid* control with data by dragging on a query and assigning it using a *SetValue* (see [this repo](https://github.com/stadium-software/samples-database))
+4. Populate the *DataGrid* control with data by dragging on a query and assigning it using a *SetValue* (see [this repo](https://github.com/stadium-software/samples-database))
 
 Fields Definition Example
 ```json
