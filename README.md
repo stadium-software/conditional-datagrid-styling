@@ -2,6 +2,10 @@
 
 Style datagrid rows or cells according to the values found in cells. The sample supports text, date, number and boolean columns. 
 
+**NOTE**
+
+Consider using the [Repeater Client-Side DataGrid](https://github.com/stadium-software/repeater-datagrid) in place of this module. *Repeater* controls are more extensible and easier to customise that DataGrids. 
+
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
 ## Version
