@@ -9,7 +9,7 @@ Consider using the [Repeater Client-Side DataGrid](https://github.com/stadium-so
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
 ## Version
-2.2
+2.3
 
 ## Change Log
 2.0 all changes:
@@ -25,6 +25,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 2.1.2 Fixed "Logout error" bug
 
 2.2 Fixed boolean conditions bug
+
+2.3 Fixed "Selectable Data" bug
 
 ## Contents
 
@@ -57,7 +59,7 @@ Use the instructions from [this repo](https://github.com/stadium-software/sample
    3. IDColumn
 3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
 ```javascript
-/* Stadium Script Version 2.2 - see https://github.com/stadium-software/conditional-datagrid-styling */
+/* Stadium Script Version 2.3 - see https://github.com/stadium-software/conditional-datagrid-styling */
 let data = ~.Parameters.Input.Conditions;
 let classInput = ~.Parameters.Input.DataGridClass;
 if (typeof classInput == "undefined") {
@@ -137,11 +139,15 @@ function styleRows() {
     observer.observe(table, options);
 }
 function getColumnDefinition() {
-    let colDefs = scope[`${datagridname}ColumnDefinitions`];
-    if (scope[`${datagridname}DataGridHasSelectableData`]) {
-        colDefs.unshift({name:"RowSelector", headerText: "RowSelector"});
+    let cols = [];
+    if (scope[`${datagridname}HasSelectableData`]) {
+        cols.push({name:"RowSelector", headerText: "RowSelector"});
     }
-    return colDefs;
+    let colDefs = scope[`${datagridname}ColumnDefinitions`];
+    for (let i=0;i<colDefs.length;i++) {
+        cols.push(colDefs[i]);
+    }
+    return cols;
 }
 function getElementFromObjects(haystack, needle, column) {
     return haystack.find(obj => {return obj[column] == needle;});
