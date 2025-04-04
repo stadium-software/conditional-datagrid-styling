@@ -28,6 +28,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 2.3 Fixed "Selectable Data" bug
 
+2.3.1 Removed sample dependency on connector
+
 ## Contents
 
 - [Conditional Datagrid Styling](#conditional-datagrid-styling)
@@ -57,7 +59,8 @@ Use the instructions from [this repo](https://github.com/stadium-software/sample
    1. Conditions
    2. DataGridClass
    3. IDColumn
-3. Drag a Javascript action into the script and paste the Javascript below unaltered into the action
+3. Drag a Javascript action into the script and paste the Javascript below into the action
+4. Do not make any changes to any of this script
 ```javascript
 /* Stadium Script Version 2.3 - see https://github.com/stadium-software/conditional-datagrid-styling */
 let data = ~.Parameters.Input.Conditions;
