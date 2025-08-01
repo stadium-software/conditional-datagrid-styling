@@ -2,6 +2,8 @@
 
 Style datagrid rows or cells according to the values found in cells. The sample supports text, date, number and boolean columns. 
 
+For simple enum (such as a `status` column, for example) styling needs, consider the [How-To: DataGrid Pills](https://github.com/stadium-software/howto-datagrid-pills) module
+
 **NOTE**
 
 Consider using the [Repeater Client-Side DataGrid](https://github.com/stadium-software/repeater-datagrid) in place of this module. *Repeater* controls are more extensible and easier to customise that DataGrids. 
