@@ -390,4 +390,4 @@ tr:has(.no_data) td:nth-child(1):after {
 ```
 
 ## Known Issues
-1. Using an underscore (_) in the page or template name can cause the script to break
+1. Using an underscore (_) in the page, template or control name causes the script to break
