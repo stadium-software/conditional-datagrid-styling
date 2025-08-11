@@ -2,7 +2,7 @@
 
 Style datagrid rows or cells according to the values found in cells. The sample supports text, date, number and boolean columns. 
 
-For styling simple enum columns, such as a `status` column, for example, consider using the [How-To: DataGrid Pills](https://github.com/stadium-software/howto-datagrid-pills) module instead.
+For styling simple enum columns, such as a `status` column, for example, consider using the [How-to: Styling Enum Column Values](https://github.com/stadium-software/howto-datagrid-enum-column-value-styling) module instead.
 
 **NOTE**
 
