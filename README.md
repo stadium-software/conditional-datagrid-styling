@@ -106,7 +106,6 @@ for (let j = 0; j < data.length; j++) {
     }
 }
 let selectorsList = '.' + classes.join(",.");
-
 let options = {
     characterData: true,
     childList: true,
@@ -115,7 +114,6 @@ let options = {
 observer = new MutationObserver(styleRows);
 styleRows();
 observer.observe(table, options);
-
 function styleRows() {
     observer.disconnect();
     removeAllClasses();
