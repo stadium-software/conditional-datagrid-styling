@@ -221,8 +221,6 @@ function getElementIndex(haystack, needle) {
 ## Type Setup
 The type can create one nested type manually or use the import option to generate the type in two parts. How the type is used remains the same
 
-![Type Setup](images/Conditions-Type.png)
-
 ### Manual Type Creation
 1. Add a type called "ConditionalColumn" to the types collection in the Stadium Application Explorer
 2. The type must have the following properties
@@ -233,6 +231,8 @@ The type can create one nested type manually or use the import option to generat
          1. class (Any)
          2. conditions (List)
             1. Item (Any)
+
+![Type Setup](images/Conditions-Type.png)
 
 ### Type Import
 1. Right-click on the `Types` node in the `Application Explorer`
