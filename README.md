@@ -243,12 +243,6 @@ The type can create one nested type manually or use the import option to generat
     1. Add "ConditionalColumn" into the `Name` input field
     2. Copy & paste the JSON below into the main input area
 
-![](imagesImportPopup.png)
-
-3. The type will be generated in two parts
-
-![](images/TypesTwoParts.png)
-
 ```json
 {
  "column": "NoOfChildren",
@@ -259,6 +253,12 @@ The type can create one nested type manually or use the import option to generat
  }]
 }
 ```
+
+![](images/ImportPopup.png)
+
+3. The type will be generated in two parts
+
+![](images/TypesTwoParts.png)
 
 ## Page Setup
 1. Add a *DataGrid* control to the page
