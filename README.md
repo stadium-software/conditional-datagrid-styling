@@ -247,7 +247,7 @@ The type can create one nested type manually or use the import option to generat
 
 3. The type will be generated in two parts
 
-
+![](images/TypesTwoParts.png)
 
 ```json
 {
