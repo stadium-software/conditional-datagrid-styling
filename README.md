@@ -18,7 +18,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
    2. [Global Script Setup](#global-script-setup)
    3. [Type Setup](#type-setup)
       1. [Manual Type Creation](#manual-type-creation)
-      2. [Import Type](#import-type)
+      2. [Type Import](#type-import)
    4. [Page Setup](#page-setup)
    5. [Page.Load Setup](#pageload-setup)
 3. [Supported Operators](#supported-operators)
@@ -234,7 +234,7 @@ The type can create one nested type manually or use the import option to generat
          2. conditions (List)
             1. Item (Any)
 
-### Import Type
+### Type Import
 1. Right-click on the `Types` node in the `Application Explorer`
 
 ![](images/TypeImport.png)
