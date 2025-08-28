@@ -245,11 +245,11 @@ The type can create one nested type manually or use the import option to generat
 
 ```json
 {
- "column": "NoOfChildren",
- "type": "Number",
+ "column": "",
+ "type": "",
  "cases": [{
-  "class": "orange-bg",
-  "conditions": [">8","<11"]
+  "class": "",
+  "conditions": []
  }]
 }
 ```
