@@ -237,7 +237,7 @@ The type can create one nested type manually or use the import option to generat
 ### Type Import
 1. Right-click on the `Types` node in the `Application Explorer`
 
-![](images/TypeImportPopup.png)
+![](images/TypeImport.png)
 
 2. In the `Import Type` popup
     1. Add "ConditionalColumn" into the `Name` input field
@@ -254,7 +254,7 @@ The type can create one nested type manually or use the import option to generat
 }
 ```
 
-![](images/ImportPopup.png)
+![](images/TypeImportPopup.png)
 
 3. The type will be generated in two parts
 
