@@ -249,7 +249,7 @@ The type can create one nested type manually or use the import option to generat
  "type": "Number",
  "cases": [{
   "class": "orange-bg",
-  "conditions": ['>8','<11']
+  "conditions": [">8","<11"]
  }]
 }
 ```
