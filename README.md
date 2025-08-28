@@ -11,7 +11,10 @@ Consider using the [Repeater Client-Side DataGrid](https://github.com/stadium-so
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
 ## Contents
-1. [Setup](#setup)
+1. [Version](#version)
+   1. [Change Log](#change-log)
+2. [Quick Setup](#quick-setup)
+3. [Setup](#setup)
    1. [Application Setup](#application-setup)
    2. [Global Script Setup](#global-script-setup)
    3. [Type Setup](#type-setup)
@@ -19,15 +22,15 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
       2. [Import Type](#import-type)
    4. [Page Setup](#page-setup)
    5. [Page.Load Setup](#pageload-setup)
-2. [Supported Operators](#supported-operators)
-3. [CSS](#css)
+4. [Supported Operators](#supported-operators)
+5. [CSS](#css)
    1. [Styling DataGrids](#styling-datagrids)
-4. [Known Issues](#known-issues)
+6. [Known Issues](#known-issues)
 
-## Version
+# Version
 2.3
 
-### Change Log
+## Change Log
 2.0 all changes:
 1. Consolidated scripts for all data types
 2. Converted use of headers to DataGrid Columns Definition
@@ -46,8 +49,11 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 2.3.1 Removed sample dependency on connector
 
-## Quick Setup
-1. [Setup](#setup)
+# Quick Setup
+1. [Version](#version)
+   1. [Change Log](#change-log)
+2. [Quick Setup](#quick-setup)
+3. [Setup](#setup)
    1. [Application Setup](#application-setup)
    2. [Global Script Setup](#global-script-setup)
    3. [Type Setup](#type-setup)
@@ -55,10 +61,10 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
       2. [Import Type](#import-type)
    4. [Page Setup](#page-setup)
    5. [Page.Load Setup](#pageload-setup)
-2. [Supported Operators](#supported-operators)
-3. [CSS](#css)
+4. [Supported Operators](#supported-operators)
+5. [CSS](#css)
    1. [Styling DataGrids](#styling-datagrids)
-4. [Known Issues](#known-issues)
+6. [Known Issues](#known-issues)
 
 # Setup
 
