@@ -13,8 +13,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 ## Contents
 1. [Version](#version)
    1. [Change Log](#change-log)
-2. [Quick Setup](#quick-setup)
-3. [Setup](#setup)
+2. [Setup](#setup)
    1. [Application Setup](#application-setup)
    2. [Global Script Setup](#global-script-setup)
    3. [Type Setup](#type-setup)
@@ -22,10 +21,10 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
       2. [Import Type](#import-type)
    4. [Page Setup](#page-setup)
    5. [Page.Load Setup](#pageload-setup)
-4. [Supported Operators](#supported-operators)
-5. [CSS](#css)
+3. [Supported Operators](#supported-operators)
+4. [CSS](#css)
    1. [Styling DataGrids](#styling-datagrids)
-6. [Known Issues](#known-issues)
+5. [Known Issues](#known-issues)
 
 # Version
 2.3
@@ -48,23 +47,6 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 2.3 Fixed "Selectable Data" bug
 
 2.3.1 Removed sample dependency on connector
-
-# Quick Setup
-1. [Version](#version)
-   1. [Change Log](#change-log)
-2. [Quick Setup](#quick-setup)
-3. [Setup](#setup)
-   1. [Application Setup](#application-setup)
-   2. [Global Script Setup](#global-script-setup)
-   3. [Type Setup](#type-setup)
-      1. [Manual Type Creation](#manual-type-creation)
-      2. [Import Type](#import-type)
-   4. [Page Setup](#page-setup)
-   5. [Page.Load Setup](#pageload-setup)
-4. [Supported Operators](#supported-operators)
-5. [CSS](#css)
-   1. [Styling DataGrids](#styling-datagrids)
-6. [Known Issues](#known-issues)
 
 # Setup
 
