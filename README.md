@@ -1,4 +1,4 @@
-# Conditional Datagrid Styling
+# Conditional Datagrid Styling <!-- omit in toc -->
 
 Style datagrid rows or cells according to the values found in cells. The sample supports text, date, number and boolean columns. 
 
@@ -13,7 +13,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 ## Version
 2.3
 
-## Change Log
+# Change Log
 2.0 all changes:
 1. Consolidated scripts for all data types
 2. Converted use of headers to DataGrid Columns Definition
@@ -33,27 +33,43 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 2.3.1 Removed sample dependency on connector
 
 ## Contents
+1. [Change Log](#change-log)
+   1. [Contents](#contents)
+   2. [Quick Setup](#quick-setup)
+2. [Setup](#setup)
+   1. [Application Setup](#application-setup)
+   2. [Global Script Setup](#global-script-setup)
+   3. [Type Setup](#type-setup)
+      1. [Manual Type Creation](#manual-type-creation)
+      2. [Import Type](#import-type)
+   4. [Page Setup](#page-setup)
+   5. [Page.Load Setup](#pageload-setup)
+3. [Supported Operators](#supported-operators)
+4. [CSS](#css)
+   1. [Styling DataGrids](#styling-datagrids)
+5. [Known Issues](#known-issues)
 
-- [Conditional Datagrid Styling](#conditional-datagrid-styling)
-  - [Version](#version)
-  - [Change Log](#change-log)
-  - [Contents](#contents)
-  - [Application Setup](#application-setup)
-  - [Database, Connector and DataGrid](#database-connector-and-datagrid)
-  - [Global Script Setup](#global-script-setup)
-  - [Type Setup](#type-setup)
-  - [Page Setup](#page-setup)
-  - [Page.Load Setup](#pageload-setup)
-  - [Supported Operators](#supported-operators)
-  - [CSS](#css)
-    - [Styling DataGrids](#styling-datagrids)
-  - [Known Issues](#known-issues)
+## Quick Setup
+1. [Change Log](#change-log)
+   1. [Contents](#contents)
+   2. [Quick Setup](#quick-setup)
+2. [Setup](#setup)
+   1. [Application Setup](#application-setup)
+   2. [Global Script Setup](#global-script-setup)
+   3. [Type Setup](#type-setup)
+      1. [Manual Type Creation](#manual-type-creation)
+      2. [Import Type](#import-type)
+   4. [Page Setup](#page-setup)
+   5. [Page.Load Setup](#pageload-setup)
+3. [Supported Operators](#supported-operators)
+4. [CSS](#css)
+   1. [Styling DataGrids](#styling-datagrids)
+5. [Known Issues](#known-issues)
+
+# Setup
 
 ## Application Setup
 Check the *Enable Style Sheet* checkbox in the application properties
-
-## Database, Connector and DataGrid
-Use the instructions from [this repo](https://github.com/stadium-software/samples-database) to setup the database and DataGrids for this sample
 
 ## Global Script Setup
 1. Create a Global Script and name it "ConditionalColumnsStyling"
@@ -219,8 +235,13 @@ function getElementIndex(haystack, needle) {
 ```
 
 ## Type Setup
+The type can create one nested type manually or use the import option to generate the type in two parts. How the type is used remains the same
+
+![Type Setup](images/Conditions-Type.png)
+
+### Manual Type Creation
 1. Add a type called "ConditionalColumn" to the types collection in the Stadium Application Explorer
-2. Add the following properties to the type
+2. The type must have the following properties
    1. column (Any)
    2. type (Any)
    3. cases (List)
@@ -229,7 +250,31 @@ function getElementIndex(haystack, needle) {
          2. conditions (List)
             1. Item (Any)
 
-![Type Setup](images/Conditions-Type.png)
+### Import Type
+1. Right-click on the `Types` node in the `Application Explorer`
+
+![](images/TypeImport.png)
+
+2. In the `Import Type` popup
+    1. Add "ConditionalColumn" into the `Name` input field
+    2. Copy & paste the JSON below into the main input area
+
+![](imagesImportPopup.png)
+
+3. The type will be generated in two parts
+
+
+
+```json
+{
+ "column": "NoOfChildren",
+ "type": "Number",
+ "cases": [{
+  "class": "orange-bg",
+  "conditions": ['>8','<11']
+ }]
+}
+```
 
 ## Page Setup
 1. Add a *DataGrid* control to the page
@@ -308,7 +353,7 @@ Fields Definition Example
 
 ![Script Parameters Example](images/ScriptParameters.png)
 
-## Supported Operators
+# Supported Operators
 
 <table>
 <tr><th></th><th>Operator</th><th>Description</th></tr>
@@ -320,10 +365,10 @@ Fields Definition Example
 <tr><td>6.</td><td><=</td><td>less than or equal to</td></tr>
 </table>
 
-## CSS
+# CSS
 When the script runs, it adds CSS the classes defined in the Conditions List above to the table cell (td) when **all** related conditions evaluate to true. See more CSS examples in the StyleSheet of the sample application 
 
-### Styling DataGrids
+## Styling DataGrids
 1. Select the *StyleSheet* in the *Application Explorer*
 2. Write CSS
 
@@ -387,5 +432,5 @@ tr:has(.no_data) td:nth-child(1):after {
 }
 ```
 
-## Known Issues
+# Known Issues
 1. Using an underscore (_) in the page, template or control name causes the script to break
