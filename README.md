@@ -53,6 +53,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 ## Application Setup
 Check the *Enable Style Sheet* checkbox in the application properties
 
+![](images/EnableStylesheet.png)
+
 ## Global Script Setup
 1. Create a Global Script and name it "ConditionalColumnsStyling"
 2. Add the input parameters below to the script
