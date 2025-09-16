@@ -300,7 +300,7 @@ Fields Definition Example
     "type": "Number",
     "cases": [{
         "class": "orange-bg",
-        "conditions": [">0","<3"]
+        "conditions": ["==3"]
     }]
 },{
     "column": "StartDate",
