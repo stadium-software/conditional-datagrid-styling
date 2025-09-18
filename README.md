@@ -256,9 +256,10 @@ The type can create one nested type manually or use the import option to generat
 ![](images/DGClass.png)
 
 ## Page.Load Setup
-1. Drag a *List* action into the event handler and call it "ConditionsList"
-2. Assign the *ConditionalColumn* type to the *List* action
-3. Define the columns to analyse
+1. Populate the *DataGrid* control with data
+2. Drag a *List* action into the event handler and call it "ConditionsList"
+3. Assign the *ConditionalColumn* type to the *List* action
+4. Define the columns to analyse
    1. *column*: the column name as defined in the *Column* property of the *DataGrid* or the column number
 
 ![](images/ColumnPropertyName.png) 
@@ -271,11 +272,14 @@ The type can create one nested type manually or use the import option to generat
    3. *cases*: a class and a list of conditions
       1. *class*: the name of the CSS class you wish to attach to cells that match all of the conditions
       2. *conditions*: a list of conditions to evaluate using the [supported operators](#supported-operators). The condition evaluates to *true* when **all** operators evaluate to *true*. Using unsupported operators will cause the condition to fail 
-         1. Number conditions examples: ">=8","<=11" (numbers from 8-11 match this condition) or "==3" (matches when the number is 3)
-         2. Date conditions example (note the date format and NO quotes around the date): "<2023-01-01" (dates before Jan first, 2023 match this condition)
-         3. Text conditions example: For text no operator needs to be supplied. All supplied words will be checked using the == condition. Text input is case sensitive
-         4. Boolean conditions example: For boolean columns the displayed valyes are 'Yes' and 'No', but the underlying values are 'true' and 'false'
-4. Populate the *DataGrid* control with data by dragging on a query and assigning it using a *SetValue* (see [this repo](https://github.com/stadium-software/samples-database))
+
+<table>
+<tr><th>Type</th><th>Example1</th><th>Example2</th></tr>
+<tr><td>Number</td><td>[">=8","<=11"]</td><td>["==3"]</td></tr>
+<tr><td>Date</td><td>[">2023-01-01"]</td><td>["==2023-01-01"]</td></tr>
+<tr><td>Text</td><td>["Subscribed"]</td><td>["Subscribed", "Unsubscribed"]</td></tr>
+<tr><td>Boolean</td><td>[true]</td><td>[false]</td></tr>
+</table>
 
 Fields Definition Example
 ```json
