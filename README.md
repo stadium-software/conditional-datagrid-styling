@@ -20,10 +20,9 @@ Consider using the [Repeater Client-Side DataGrid](https://github.com/stadium-so
       2. [Manual Type Creation](#manual-type-creation)
    4. [Page Setup](#page-setup)
    5. [Page.Load Setup](#pageload-setup)
-4. [Supported Operators](#supported-operators)
-5. [Styling Cells and Rows](#styling-cells-and-rows)
-6. [Upgrading Stadium Repos](#upgrading-stadium-repos)
-7. [Known Issues](#known-issues)
+4. [Styling Cells and Rows](#styling-cells-and-rows)
+5. [Upgrading Stadium Repos](#upgrading-stadium-repos)
+6. [Known Issues](#known-issues)
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
@@ -336,15 +335,8 @@ Fields Definition Example
     }]
 }]
 ```
-5. Drag the "ConditionalColumnsStyling" global script below the *List*
-6. Enter parameters for the script
-   1. DataGridClass: The unique classname you assigned to the DataGrid above (e.g. conditional-display)
-   3. Conditions: Select the List containing the conditions defined above from the dropdown
-   4. IDColumn: The name of the column that contains the identifier for this dataset as defined in the DataGrid Column property or the column number
 
-![Script Parameters Example](images/ScriptParameters.png)
-
-# Supported Operators
+4. Supported Operators
 
 <table>
 <tr><th>Operator</th><th>Description</th></tr>
@@ -355,6 +347,14 @@ Fields Definition Example
 <tr><td>>=</td><td>greater than or equal to</td></tr>
 <tr><td><=</td><td>less than or equal to</td></tr>
 </table>
+
+5. Drag the "ConditionalColumnsStyling" global script below the *List*
+6. Enter parameters for the script
+   1. DataGridClass: The unique classname you assigned to the DataGrid above (e.g. conditional-display)
+   3. Conditions: Select the List containing the conditions defined above from the dropdown
+   4. IDColumn: The name of the column that contains the identifier for this dataset as defined in the DataGrid Column property or the column number
+
+![Script Parameters Example](images/ScriptParameters.png)
 
 # Styling Cells and Rows
 1. Select the *StyleSheet* in the *Application Explorer*
