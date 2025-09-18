@@ -17,8 +17,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
    1. [Application Setup](#application-setup)
    2. [Global Script Setup](#global-script-setup)
    3. [Type Setup](#type-setup)
-      1. [Manual Type Creation](#manual-type-creation)
-      2. [Type Import](#type-import)
+      1. [Type Import](#type-import)
+      2. [Manual Type Creation](#manual-type-creation)
    4. [Page Setup](#page-setup)
    5. [Page.Load Setup](#pageload-setup)
 3. [Supported Operators](#supported-operators)
@@ -210,19 +210,6 @@ function compareSets(set1, set2) {
 ## Type Setup
 The type can create one nested type manually or use the import option to generate the type in two parts. How the type is used remains the same
 
-### Manual Type Creation
-1. Add a type called "ConditionalColumn" to the types collection in the Stadium Application Explorer
-2. The type must have the following properties
-   1. column (Any)
-   2. type (Any)
-   3. cases (List)
-      1. Item (Object)
-         1. class (Any)
-         2. conditions (List)
-            1. Item (Any)
-
-![Type Setup](images/Conditions-Type.png)
-
 ### Type Import
 1. Right-click on the `Types` node in the `Application Explorer`
 
@@ -248,6 +235,19 @@ The type can create one nested type manually or use the import option to generat
 3. The type will be generated in two parts
 
 ![](images/TypesTwoParts.png)
+
+### Manual Type Creation
+1. Add a type called "ConditionalColumn" to the types collection in the Stadium Application Explorer
+2. The type must have the following properties
+   1. column (Any)
+   2. type (Any)
+   3. cases (List)
+      1. Item (Object)
+         1. class (Any)
+         2. conditions (List)
+            1. Item (Any)
+
+![Type Setup](images/Conditions-Type.png)
 
 ## Page Setup
 1. Add a *DataGrid* control to the page
