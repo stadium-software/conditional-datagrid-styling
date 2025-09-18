@@ -265,6 +265,9 @@ The type can create one nested type manually or use the import option to generat
 ## Page.Load Setup
 1. Populate the *DataGrid* control with data
 2. Drag a *List* action into the event handler and call it "ConditionsList"
+
+![](images/ListType.png)
+
 3. Assign the *ConditionalColumn* type to the *List* action
 4. Define the columns to analyse
    1. *column*: the column name as defined in the *Column* property of the *DataGrid* or the column number
