@@ -279,7 +279,7 @@ The type can create one nested type manually or use the import option to generat
       3. text
       4. boolean
    3. *cases*: a class and a list of conditions
-      1. *class*: the name of the CSS class you wish to attach to cells that match all of the conditions
+      1. *class*: the name of the [CSS class](#styling-cells-and-rows) you wish to attach to cells that match all of the conditions
       2. *conditions*: a list of conditions to evaluate using the [supported operators](#supported-operators). The condition evaluates to *true* when **all** operators evaluate to *true*. Using unsupported operators will cause the condition to fail 
 
 <table>
