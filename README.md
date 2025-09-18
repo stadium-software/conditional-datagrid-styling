@@ -348,13 +348,13 @@ Fields Definition Example
 # Supported Operators
 
 <table>
-<tr><th></th><th>Operator</th><th>Description</th></tr>
-<tr><td>1.</td><td>==</td><td>equals</td></tr>
-<tr><td>2.</td><td>!=</td><td>not equal</td></tr>
-<tr><td>3.</td><td>></td><td>greater than</td></tr>
-<tr><td>4.</td><td><</td><td>ess than </td></tr>
-<tr><td>5.</td><td>>=</td><td>greater than or equal to</td></tr>
-<tr><td>6.</td><td><=</td><td>less than or equal to</td></tr>
+<tr><th>Operator</th><th>Description</th></tr>
+<tr><td>==</td><td>equals</td></tr>
+<tr><td>!=</td><td>not equal</td></tr>
+<tr><td>></td><td>greater than</td></tr>
+<tr><td><</td><td>ess than </td></tr>
+<tr><td>>=</td><td>greater than or equal to</td></tr>
+<tr><td><=</td><td>less than or equal to</td></tr>
 </table>
 
 # CSS
