@@ -260,7 +260,9 @@ The type can create one nested type manually or use the import option to generat
 2. Assign the *ConditionalColumn* type to the *List* action
 3. Define the columns to analyse
    1. *column*: the column name as defined in the *Column* property of the *DataGrid* or the column number
+
 ![](images/ColumnPropertyName.png) 
+
    2. *type*: the data type of the column for which you wish to analyse the data. The following are supported
       1. number
       2. date
