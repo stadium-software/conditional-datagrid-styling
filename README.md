@@ -269,7 +269,7 @@ The type can create one nested type manually or use the import option to generat
 
 ![](images/ListType.png)
 
-4. Define the columns to analyse
+4. Define the columns to analyse in the List `Value` property
    1. *column*: the column name as defined in the *Column* property of the *DataGrid* or the column number
 
 ![](images/ColumnPropertyName.png) 
