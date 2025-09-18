@@ -290,7 +290,19 @@ The type can create one nested type manually or use the import option to generat
 <tr><td>Boolean</td><td>[true]</td><td>[false]</td></tr>
 </table>
 
-Fields Definition Example
+4. Supported Operators
+
+<table>
+<tr><th>Operator</th><th>Description</th></tr>
+<tr><td>==</td><td>equals</td></tr>
+<tr><td>!=</td><td>not equal</td></tr>
+<tr><td>></td><td>greater than</td></tr>
+<tr><td><</td><td>ess than </td></tr>
+<tr><td>>=</td><td>greater than or equal to</td></tr>
+<tr><td><=</td><td>less than or equal to</td></tr>
+</table>
+
+**Fields Definition Example**
 ```json
 [{
     "column": "NoOfChildren",
@@ -335,18 +347,6 @@ Fields Definition Example
     }]
 }]
 ```
-
-4. Supported Operators
-
-<table>
-<tr><th>Operator</th><th>Description</th></tr>
-<tr><td>==</td><td>equals</td></tr>
-<tr><td>!=</td><td>not equal</td></tr>
-<tr><td>></td><td>greater than</td></tr>
-<tr><td><</td><td>ess than </td></tr>
-<tr><td>>=</td><td>greater than or equal to</td></tr>
-<tr><td><=</td><td>less than or equal to</td></tr>
-</table>
 
 5. Drag the "ConditionalColumnsStyling" global script below the *List*
 6. Enter parameters for the script
