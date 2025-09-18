@@ -20,9 +20,9 @@ Consider using the [Repeater Client-Side DataGrid](https://github.com/stadium-so
       2. [Manual Type Creation](#manual-type-creation)
    4. [Page Setup](#page-setup)
    5. [Page.Load Setup](#pageload-setup)
-4. [Styling Cells and Rows](#styling-cells-and-rows)
-5. [Upgrading Stadium Repos](#upgrading-stadium-repos)
-6. [Known Issues](#known-issues)
+   6. [Styling Cells and Rows](#styling-cells-and-rows)
+4. [Upgrading Stadium Repos](#upgrading-stadium-repos)
+5. [Known Issues](#known-issues)
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
@@ -356,7 +356,7 @@ Fields Definition Example
 
 ![Script Parameters Example](images/ScriptParameters.png)
 
-# Styling Cells and Rows
+## Styling Cells and Rows
 1. Select the *StyleSheet* in the *Application Explorer*
 2. Write CSS
 
