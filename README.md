@@ -324,7 +324,7 @@ Fields Definition Example
 6. Enter parameters for the script
    1. DataGridClass: The unique classname you assigned to the DataGrid above (e.g. conditional-display)
    3. Conditions: Select the List containing the conditions defined above from the dropdown
-   4. IDColumn: The name of the column that contains the identifyer for this dataset as defined in the DataGrid Column property or the column number
+   4. IDColumn: The name of the column that contains the identifier for this dataset as defined in the DataGrid Column property or the column number
 
 ![Script Parameters Example](images/ScriptParameters.png)
 
