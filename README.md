@@ -27,7 +27,7 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 5. [Known Issues](#known-issues)
 
 # Version
-2.3
+3.0
 
 ## Change Log
 2.0 all changes:
@@ -48,6 +48,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 
 2.3.1 Removed sample dependency on connector
 
+3.0 Script performance optimisations
+
 # Setup
 
 ## Application Setup
@@ -64,16 +66,16 @@ Check the *Enable Style Sheet* checkbox in the application properties
 3. Drag a Javascript action into the script and paste the Javascript below into the action
 4. Do not make any changes to any of this script
 ```javascript
-/* Stadium Script Version 2.3 - see https://github.com/stadium-software/conditional-datagrid-styling */
-let data = ~.Parameters.Input.Conditions;
+/* Stadium Script Version 3.0 - see https://github.com/stadium-software/conditional-datagrid-styling */
+let conditions = ~.Parameters.Input.Conditions || [];
 let classInput = ~.Parameters.Input.DataGridClass;
-if (typeof classInput == "undefined") {
+if (!classInput) {
     console.error("The DataGridClass parameter is required");
     return false;
-} 
-let dgClassName = "." + classInput;
-let idColumn = ~.Parameters.Input.IDColumn;
+}
+let dgClassName = `.${classInput}`;
 let scope = this;
+let idColumn = ~.Parameters.Input.IDColumn;
 let dg = document.querySelectorAll(dgClassName);
 if (dg.length == 0) {
     console.error("The class '" + dgClassName + "' is not assigned to any DataGrid");
@@ -81,86 +83,92 @@ if (dg.length == 0) {
 } else if (dg.length > 1) {
     console.error("The class '" + dgClassName + "' is assigned to multiple DataGrids. DataGrids using this script must have unique classnames");
     return false;
-} else { 
-    dg = dg[0];
 }
+dg = dg[0];
 let datagridname = dg.id.split("_")[1].replace("-container","");
-let dataGridColumns = getColumnDefinition();
-if (!isNumber(idColumn)) {
-    idColumn = dataGridColumns.map(function (e) {return e.name;}).indexOf(idColumn) + 1;
-}
 let table = dg.querySelector("table");
 table.classList.add("datagrid-custom-column-styling");
-for (let j = 0; j < data.length; j++) {
-    let column = data[j].column;
-    if (!isNumber(column)) {
-        let columnNo = dataGridColumns.map(function (e) {return e.name;}).indexOf(column) + 1;
-        data[j].column = columnNo;
+const tbody = table.querySelector("tbody");
+const classes = new Set(conditions.flatMap(condition => condition.cases?.map(c => c.class) || []));
+let options = {characterData: true, childList: true, subtree: true, attributes: false};
+let loadObserver = new MutationObserver(getDataGridData);
+let changeObserver = new MutationObserver(addConditionsData);
+let dataGridColumns = getColumnDefinition();
+const columnIndexMap = new Map(dataGridColumns.map((col, idx) => [col, idx]));
+let idColumnIndex = columnIndexMap.get(idColumn);
+loadObserver.observe(table, options);
+let data = [];
+let dataLookup;
+getDataGridData();
+function getDataGridData() { 
+    data = scope[`${datagridname}Data`];
+    if (data) {
+        loadObserver.disconnect();
+        dataLookup = new Map(data.map(item => [String(item[idColumn]).trim(), item]));
+        addConditionsData();
     }
 }
-let classes = [];
-for (let j = 0; j < data.length; j++) { 
-    let c = data[j].cases;
-    for (let i = 0; i < c.length; i++) { 
-        if (getElementIndex(classes, c[i].class) == -1) classes.push(c[i].class);
-    }
-}
-let selectorsList = '.' + classes.join(",.");
-let options = {
-    characterData: true,
-    childList: true,
-    subtree: true,
-},
-observer = new MutationObserver(styleRows);
-styleRows();
-observer.observe(table, options);
-function styleRows() {
-    observer.disconnect();
-    removeAllClasses();
-    let arrIDCells = table.querySelectorAll("tbody tr td:nth-child(" + idColumn + ")");
-    for (let j = 0; j < arrIDCells.length; j++) {
-        let row = arrIDCells[j].closest("tr");
-        let IDcell = arrIDCells[j];
-        if (IDcell.querySelector("button")) IDcell = IDcell.childNodes[0];
-        let IDValue = Array.prototype.reduce.call(IDcell.childNodes, function(a, b) { return a + (b.nodeType === 3 ? b.textContent : ''); }, '');
-        let rowData = getElementFromObjects(scope[`${datagridname}Data`], convertToNumber(IDValue), dataGridColumns[idColumn - 1].name);
-        if (rowData) {
-            for (let k = 0; k < data.length; k++) {
-                let colValue = rowData[dataGridColumns[data[k].column - 1].name];
-                let type = data[k].type;
-                let cases = data[k].cases;
-                for (let m = 0; m < cases.length; m++) {
-                    let cellclass = cases[m].class;
-                    let conditions = cases[m].conditions;
-                    if (pass(colValue, conditions, type)) {
-                        row.cells[data[k].column - 1].classList.add(cellclass);
-                    }
+function addConditionsData() {
+    if (!compareSets(data, scope[`${datagridname}Data`])) getDataGridData();
+    for (const row of data) {
+        const classes = [];
+        for (const cond of conditions || []) {
+            const cases = Array.isArray(cond?.cases) ? cond.cases : [];
+            for (const cs of cases) {
+                if (pass(row?.[cond.column], cs.conditions, cond.type)) {
+                    classes.push({ Column: cond.column, Class: cs.class });
                 }
             }
         }
-    }
-    observer.observe(table, options);
+        row.ConditionalClasses = classes;
+  }
+  assignClasses(data);
+}
+function assignClasses() {
+    if (!data?.length || idColumnIndex === undefined) return;
+    removeAllClasses();
+    const rows = tbody.querySelectorAll("tr");
+    if (!rows.length) return;
+    changeObserver.disconnect();
+    const classUpdates = new Map();
+    rows.forEach(row => {
+        const cells = row.querySelectorAll("td");
+        const idCell = cells[idColumnIndex];
+        if (!idCell) return;
+        const rowData = dataLookup.get(idCell.textContent.replace(/\s/g, ""));
+        rowData?.ConditionalClasses?.forEach(({ Column, Class }) => {
+            const columnIndex = columnIndexMap.get(Column);
+            const cell = cells[columnIndex];
+            if (cell) {
+                if (!classUpdates.has(cell)) classUpdates.set(cell, []);
+                classUpdates.get(cell).push(Class);
+            }
+        });
+    });
+    classUpdates.forEach((classes, cell) => {
+        cell.classList.add(...classes);
+    });
+    changeObserver.observe(table, options);
 }
 function getColumnDefinition() {
     let cols = [];
-    if (scope[`${datagridname}HasSelectableData`]) {
-        cols.push({name:"RowSelector", headerText: "RowSelector"});
-    }
-    let colDefs = scope[`${datagridname}ColumnDefinitions`];
-    for (let i=0;i<colDefs.length;i++) {
-        cols.push(colDefs[i]);
-    }
-    return cols;
+    if (scope[`${datagridname}HasSelectableData`]) cols.push("StadiumRowSelector");
+    const colDefs = scope[`${datagridname}ColumnDefinitions`] || [];
+    return cols.concat(colDefs.map(col => col.name));
 }
-function getElementFromObjects(haystack, needle, column) {
-    return haystack.find(obj => {return obj[column] == needle;});
+ function removeAllClasses() {
+    const selector = [...classes].map(cls => `.${cls}`).join(',');
+    table.querySelectorAll(selector).forEach(cell => {classes.forEach(cls => cell.classList.remove(cls));});
 }
 function pass(value, conds, type) { 
+    if (!conds?.length) return true;
     let passed = true;
+    const operators = {'==': (a, b) => a == b,'!=': (a, b) => a != b,'>=': (a, b) => a >= b,'<=': (a, b) => a <= b,'<': (a, b) => a < b,'>': (a, b) => a > b};
+    const CONDITION_REGEX = /==|>=|<=|>|<|!=/g;
     for (let i = 0; i < conds.length; i++) {
         let cond = "", arrCond, value2 = "";
         if (typeof conds[i] == 'string') {
-            arrCond = conds[i].match(/==|>=|<=|>|<|!=/g);
+            arrCond = conds[i].match(CONDITION_REGEX);
             if (arrCond) cond = arrCond[0];
             value2 = conds[i].replace(cond, "");
         }
@@ -170,19 +178,7 @@ function pass(value, conds, type) {
             value2 = new Date(value2);
         }
         if (type.toLowerCase() == 'number' || type.toLowerCase() == 'date') {
-            if (cond == "==") {
-                if ((value1 == value2) == false) passed = false;
-            } else if (cond == "!=") {
-                if ((value1 != value2) == false) passed = false;
-            } else if (cond == ">=") {
-                if ((value1 >= value2) == false) passed = false;
-            } else if (cond == "<=") {
-                if ((value1 <= value2) == false) passed = false;
-            } else if (cond == "<") {
-                if ((value1 < value2) == false) passed = false;
-            } else if (cond == ">") {
-                if ((value1 > value2) == false) passed = false;
-            }
+        if (!operators[cond](value1, value2)) passed = false;
         } else if (type.toLowerCase() == 'boolean') {
             if (value1 != conds[i]) passed = false;
         } else {
@@ -191,30 +187,23 @@ function pass(value, conds, type) {
     }
     return passed;
 }
-function removeAllClasses() { 
-    let arrClassCells = table.querySelectorAll(":is(" + selectorsList + ")");
-    for (let i = 0; i < arrClassCells.length; i++) { 
-        for (let j = 0; j < classes.length; j++) {
-            arrClassCells[i].classList.remove(classes[j]);
-        }
+function convertToNumber(val) {
+    if (typeof val === "number") return val;
+    if (typeof val === "string") {
+        const cleaned = val.replace(/\s/g, "");
+        return isNumber(cleaned) ? Number(cleaned) : val;
     }
+    return val;
 }
 function isNumber(str) {
     if (typeof str == "number") return true;
     return !isNaN(str) && !isNaN(parseFloat(str));
 }
-function convertToNumber(val) {
-    if (!isNumber(val)) {
-        let no;
-        if (typeof val == "string") no = val.replace(/ /g,"");
-        if (isNumber(no)) return Number(no);
-    } else {
-        val = Number(val);
-    }
-    return val;
-}
-function getElementIndex(haystack, needle) {
-    return haystack.indexOf(needle);
+function compareSets(set1, set2) {
+    if (set1.length !== set2.length || set1[0] !== set2[0]) return false;
+    const ids1 = set1.map(a => a[idColumn]).sort();
+    const ids2 = set2.map(a => a[idColumn]).sort();
+    return JSON.stringify(ids1) === JSON.stringify(ids2);
 }
 ```
 
@@ -288,7 +277,7 @@ The type can create one nested type manually or use the import option to generat
 
 Fields Definition Example
 ```json
-= [{
+[{
     "column": "NoOfChildren",
     "type": "Number",
     "cases": [{
