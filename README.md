@@ -25,13 +25,13 @@ Consider using the [Repeater Client-Side DataGrid](https://github.com/stadium-so
    1. [Styling DataGrids](#styling-datagrids)
 6. [Known Issues](#known-issues)
 
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
+
 # Quickstart
 1. [Create Global Script](#global-script-setup)
 2. [Add Types](#type-setup)
 3. [Add Control to Page](#page-setup)
 4. [Create Page.Load](#pageload-setup)
-
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
 # Version
 3.0
