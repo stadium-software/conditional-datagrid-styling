@@ -23,6 +23,7 @@ Consider using the [Repeater Client-Side DataGrid](https://github.com/stadium-so
 4. [Supported Operators](#supported-operators)
 5. [CSS](#css)
    1. [Styling DataGrids](#styling-datagrids)
+   2. [Upgrading Stadium Repos](#upgrading-stadium-repos)
 6. [Known Issues](#known-issues)
 
 https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
@@ -422,6 +423,10 @@ tr:has(.no_data) td:nth-child(1):after {
     content: "Disabled";
 }
 ```
+## Upgrading Stadium Repos
+Stadium Repos are not static. They change as additional features are added and bugs are fixed. Using the right method to work with Stadium Repos allows for upgrading them in a controlled manner. 
+
+How to use and update application repos is described here: [Working with Stadium Repos](https://github.com/stadium-software/samples-upgrading)
 
 # Known Issues
 1. Using an underscore (_) in the page, template or control name causes the script to break
