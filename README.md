@@ -8,8 +8,6 @@ For styling simple enum columns, such as a `status` column, for example, conside
 
 Consider using the [Repeater Client-Side DataGrid](https://github.com/stadium-software/repeater-datagrid) in place of this module. *Repeater* controls are more extensible and easier to customise that DataGrids. 
 
-https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
-
 ## Contents
 1. [Quickstart](#quickstart)
 2. [Version](#version)
@@ -32,6 +30,8 @@ https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/
 2. [Add Types](#type-setup)
 3. [Add Control to Page](#page-setup)
 4. [Create Page.Load](#pageload-setup)
+
+https://github.com/stadium-software/conditional-datagrid-styling/assets/2085324/a9fa9c20-2816-4177-9433-2a3367ea69b0
 
 # Version
 3.0
