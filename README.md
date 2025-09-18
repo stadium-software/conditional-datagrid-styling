@@ -22,7 +22,7 @@ Consider using the [Repeater Client-Side DataGrid](https://github.com/stadium-so
    5. [Page.Load Setup](#pageload-setup)
 4. [Supported Operators](#supported-operators)
 5. [CSS](#css)
-   1. [Styling DataGrids](#styling-datagrids)
+   1. [Styling Cells and Rows](#styling-cells-and-rows)
 6. [Upgrading Stadium Repos](#upgrading-stadium-repos)
 7. [Known Issues](#known-issues)
 
@@ -360,7 +360,7 @@ Fields Definition Example
 # CSS
 When the script runs, it adds CSS the classes defined in the Conditions List above to the table cell (td) when **all** related conditions evaluate to true. See more CSS examples in the StyleSheet of the sample application 
 
-## Styling DataGrids
+## Styling Cells and Rows
 1. Select the *StyleSheet* in the *Application Explorer*
 2. Write CSS
 
