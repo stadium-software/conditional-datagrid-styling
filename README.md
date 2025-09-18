@@ -285,7 +285,7 @@ The type can create one nested type manually or use the import option to generat
 <table>
 <tr><th>Type</th><th>Example1</th><th>Example2</th></tr>
 <tr><td>Number</td><td>[">=8","<=11"]</td><td>["==3"]</td></tr>
-<tr><td>Date</td><td>[">2023-01-01"]</td><td>["==2023-01-01"]</td></tr>
+<tr><td>Date</td><td>[">2023-01-01", "<2024-01-01"]</td><td>["==2023-01-01"]</td></tr>
 <tr><td>Text</td><td>["Subscribed"]</td><td>["Subscribed", "Unsubscribed"]</td></tr>
 <tr><td>Boolean</td><td>[true]</td><td>[false]</td></tr>
 </table>
