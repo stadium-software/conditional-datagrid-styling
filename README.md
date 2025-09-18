@@ -384,6 +384,7 @@ tr:has(.no_data) td {
 ```
 
 **Styling other cells in the row**
+
 Styling the first cell in the row where a class called "no_data" was applied to any cell
 ```css
 tr:has(.no_data) td:nth-child(1) {
@@ -392,6 +393,7 @@ tr:has(.no_data) td:nth-child(1) {
 ```
 
 **Manipulating other cells in a row**
+
 The examples assume one of the cells has the class *no_data* and the **first column** has a **Click** event handler (td:nth-child(1))
 
 Making a link look disabled
